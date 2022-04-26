@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import vn.hcmute.nhom02.foody.Domain.Drinks;
 import vn.hcmute.nhom02.foody.R;
 
-public class DrinkAdaptor extends RecyclerView.Adapter<DrinkAdaptor.ViewHolder>{
+public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder>{
     ArrayList<Drinks> drinks;
 
-    public DrinkAdaptor(ArrayList<Drinks> drinks) {
+    public DrinkAdapter(ArrayList<Drinks> drinks) {
         this.drinks = drinks;
     }
 

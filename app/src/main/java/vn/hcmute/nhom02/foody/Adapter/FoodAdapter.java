@@ -15,14 +15,14 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Domain.CategoryDomain;
+import vn.hcmute.nhom02.foody.Domain.Foods;
 import vn.hcmute.nhom02.foody.R;
 
-public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHolder> {
-    ArrayList<CategoryDomain> categoryDomains;
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
+    ArrayList<Foods> foods;
 
-    public CategoryAdaptor(ArrayList<CategoryDomain> categoryDomains) {
-        this.categoryDomains = categoryDomains;
+    public FoodAdapter(ArrayList<Foods> foods) {
+        this.foods = foods;
     }
 
     @NonNull
@@ -33,9 +33,9 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdaptor.ViewHolder holder, int position) {
-        holder.categoryName.setText(categoryDomains.get(position).getName());
-        holder.price.setText(categoryDomains.get(position).getPrice());
+    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
+        holder.categoryName.setText(foods.get(position).getName());
+        holder.price.setText(foods.get(position).getPrice());
         String picUrl = "";
         switch (position) {
             case 0: {
@@ -77,7 +77,7 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
     @Override
     public int getItemCount() {
-        return categoryDomains.size();
+        return foods.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

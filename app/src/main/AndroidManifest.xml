@@ -26,16 +26,8 @@
             android:name=".Activity.OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DrinkActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activity.IntroActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activity.FoodActivity"
-            android:exported="false">
-
-        </activity>
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true">

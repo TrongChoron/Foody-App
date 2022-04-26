@@ -1,11 +1,11 @@
 package vn.hcmute.nhom02.foody.Domain;
 
-public class CategoryDomain {
+public class Foods {
     private String name;
     private String pic;
     private String price;
 
-    public CategoryDomain(String name, String pic, String price) {
+    public Foods(String name, String pic, String price) {
         this.name = name;
         this.pic = pic;
         this.price = price;
