@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Adaptor.CategoryAdaptor;
+import vn.hcmute.nhom02.foody.Adapter.CategoryAdaptor;
 import vn.hcmute.nhom02.foody.Domain.CategoryDomain;
 import vn.hcmute.nhom02.foody.R;
 

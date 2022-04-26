@@ -8,9 +8,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Adaptor.CategoryAdaptor;
-import vn.hcmute.nhom02.foody.Adaptor.DrinkAdaptor;
-import vn.hcmute.nhom02.foody.Domain.CategoryDomain;
+import vn.hcmute.nhom02.foody.Adapter.DrinkAdaptor;
 import vn.hcmute.nhom02.foody.Domain.Drinks;
 import vn.hcmute.nhom02.foody.R;
 

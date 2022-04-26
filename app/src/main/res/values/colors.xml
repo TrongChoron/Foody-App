@@ -10,4 +10,5 @@
     <color name="mainColor">#D91F34</color>
     <color name="background">#0d1128</color>
     <color name="orange">#FF9800</color>
+    <color name="bgBottomNavigation">#fe485a</color>
 </resources>
