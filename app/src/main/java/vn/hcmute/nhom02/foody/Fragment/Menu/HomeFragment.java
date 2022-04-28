@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 
-import vn.hcmute.nhom02.foody.Adapter.SectionPaperAdapter;
+import vn.hcmute.nhom02.foody.adapter.SectionPaperAdapter;
 import vn.hcmute.nhom02.foody.Fragment.Category.*;
 import vn.hcmute.nhom02.foody.R;
 

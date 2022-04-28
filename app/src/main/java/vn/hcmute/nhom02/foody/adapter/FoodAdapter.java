@@ -1,4 +1,4 @@
-package vn.hcmute.nhom02.foody.Adapter;
+package vn.hcmute.nhom02.foody.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,46 +15,51 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Domain.Drinks;
+import vn.hcmute.nhom02.foody.Domain.Foods;
 import vn.hcmute.nhom02.foody.R;
 
-public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder>{
-    ArrayList<Drinks> drinks;
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
+    ArrayList<Foods> foods;
 
-    public DrinkAdapter(ArrayList<Drinks> drinks) {
-        this.drinks = drinks;
+    public FoodAdapter(ArrayList<Foods> foods) {
+        this.foods = foods;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_tag, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_tag, parent, false);
         return new ViewHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.categoryName.setText(drinks.get(position).getName());
-        holder.price.setText(drinks.get(position).getPrice());
+    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
+        holder.categoryName.setText(foods.get(position).getName());
+        holder.price.setText(foods.get(position).getPrice());
         String picUrl = "";
         switch (position) {
             case 0: {
-                picUrl = "nuoc";
+                picUrl = "banhcanh";
                 holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.nuoc));
+                        .getDrawable(holder.itemView.getContext(), R.drawable.banhcanh));
                 break;
             }
             case 1: {
-                picUrl = "caphe";
+                picUrl = "com";
                 holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.caphe));
+                        .getDrawable(holder.itemView.getContext(), R.drawable.com));
                 break;
             }
             case 2: {
-                picUrl = "trasuaboo";
+                picUrl = "bunbo";
                 holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.trasuaboo));
+                        .getDrawable(holder.itemView.getContext(), R.drawable.bunbo));
+                break;
+            }
+            case 3: {
+                picUrl = "bunmam";
+                holder.categoryPic.setBackground(ContextCompat
+                        .getDrawable(holder.itemView.getContext(), R.drawable.bunmam));
                 break;
             }
         }
@@ -72,7 +77,7 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return drinks.size();
+        return foods.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

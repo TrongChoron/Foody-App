@@ -1,14 +1,23 @@
 package vn.hcmute.nhom02.foody.Domain;
 
 public class Drinks {
+    private Integer id;
     private String name;
     private String pic;
     private String price;
 
-    public Drinks(String name, String pic, String price) {
+    public Drinks( String name, String pic, String price) {
         this.name = name;
         this.pic = pic;
         this.price = price;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,12 +1,9 @@
-package vn.hcmute.nhom02.foody.Activity;
+package vn.hcmute.nhom02.foody.activity;
 
 import android.os.Bundle;
-import android.util.Base64;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,9 +12,11 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.database.Database;
 import vn.hcmute.nhom02.foody.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    public static Database database;
     private ActivityMainBinding binding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +30,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        database = new Database(this, "foody_test1.sqlite", null, 1);
+        createTableUser();
+
     }
 
+    private void createTableUser() {
+        database.QueryData("create table if not exists user (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255)," +
+                "email varchar(255) unique, " +
+                "password varchar(20)," +
+                "avatar blob);");
+    }
 
 }

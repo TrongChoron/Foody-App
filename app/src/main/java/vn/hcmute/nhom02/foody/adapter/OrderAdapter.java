@@ -1,4 +1,4 @@
-package vn.hcmute.nhom02.foody.Adapter;
+package vn.hcmute.nhom02.foody.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

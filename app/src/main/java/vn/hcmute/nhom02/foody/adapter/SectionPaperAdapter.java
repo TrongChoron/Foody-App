@@ -1,4 +1,4 @@
-package vn.hcmute.nhom02.foody.Adapter;
+package vn.hcmute.nhom02.foody.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

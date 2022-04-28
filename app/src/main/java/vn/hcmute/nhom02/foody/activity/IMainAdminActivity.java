@@ -1,4 +1,4 @@
-package vn.hcmute.nhom02.foody.Activity;
+package vn.hcmute.nhom02.foody.activity;
 
 import androidx.fragment.app.Fragment;
 

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Adapter.DrinkAdapter;
+import vn.hcmute.nhom02.foody.adapter.DrinkAdapter;
 import vn.hcmute.nhom02.foody.Domain.Drinks;
 import vn.hcmute.nhom02.foody.R;
 
