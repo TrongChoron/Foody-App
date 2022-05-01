@@ -1,5 +1,7 @@
 package vn.hcmute.nhom02.foody.database;
 
+import android.database.Cursor;
+
 import java.util.List;
 
 import vn.hcmute.nhom02.foody.mapper.UserMapper;
@@ -24,8 +26,8 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
 
     @Override
     public Long insert(User user) {
-        final String sql = "INSERT INTO user VALUES(null, ?, ?, ?, ?)";
-        return insert(sql, user.getName(), user.getEmail(), user.getPassword(), user.getAvatar());
+        final String sql = "INSERT INTO user VALUES(null, ?, ?, ?)";
+        return insert(sql, user.getName(), user.getEmail(), user.getPassword());
     }
 
     @Override
@@ -34,16 +36,11 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
         return update(sql, user.getPassword(), user.getId());
     }
 
-    @Override
-    public Integer updateOnlyPhoto(User user) {
-        final String sql = "UPDATE user SET avatar = ? WHERE id = ?";
-        return update(sql, user.getAvatar(), user.getId());
-    }
 
     @Override
-    public Integer updatePhotoAndName(User user) {
-        final String sql = "UPDATE user SET avatar = ? , name = ? WHERE id = ?";
-        return update(sql, user.getAvatar(), user.getName(), user.getId());
+    public Integer updateName(User user) {
+        final String sql = "UPDATE user SET name = ? WHERE id = ?";
+        return update(sql, user.getName(), user.getId());
     }
 
     @Override
@@ -62,7 +59,7 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
     @Override
     public User findByUserEmailAndPassword(String email, String password) {
         final String sql = "SELECT * FROM user WHERE email = '" + email + "' and password = '" + password + "' ";
-        final List results = query(sql, new UserMapper());
+        List results = query(sql, new UserMapper());
         return results.size() > 0 ? (User) results.get(0) : null;
     }
 }

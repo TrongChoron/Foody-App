@@ -19,7 +19,6 @@ public class UserMapper implements RowMapper{
         user.setName(cs.getString(1));
         user.setEmail(cs.getString(2));
         user.setPassword(cs.getString(3));
-        user.setAvatar(cs.getBlob(4));
         return user;
     }
 }

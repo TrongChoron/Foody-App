@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/image">
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/edtEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
@@ -42,7 +42,7 @@
         </EditText>
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/edtPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -52,20 +52,21 @@
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email">
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail">
 
         </EditText>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Login"
+            android:onClick="btnLoginClick"
             android:backgroundTint="@color/mainColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password">
+            app:layout_constraintTop_toBottomOf="@+id/edtPassword">
         </Button>
 
 
@@ -93,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Sign Up"
+            android:onClick="tvSignUpClick"
             android:textSize="24dp"
             android:textColor="@color/mainColor"
             android:textStyle="bold">

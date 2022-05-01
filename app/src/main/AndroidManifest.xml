@@ -28,7 +28,7 @@
             android:name=".activity.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name=".signup.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"

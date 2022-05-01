@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteStatement;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.hcmute.nhom02.foody.activity.MainActivity;
+import vn.hcmute.nhom02.foody.activity.LoginActivity;
+import vn.hcmute.nhom02.foody.activity.SplashActivity;
 import vn.hcmute.nhom02.foody.mapper.RowMapper;
 
 /**
@@ -19,7 +20,8 @@ import vn.hcmute.nhom02.foody.mapper.RowMapper;
  * Filename : AbstractQuery
  */
 public class AbstractQuery<T> implements GenericQuery<T>{
-    private final Database database = MainActivity.database;
+
+    private final Database database = SplashActivity.database;
 
     private SQLiteStatement setParameter(String sql, Object... parameters) {
         SQLiteStatement statement = database.getWritableDatabase().compileStatement(sql);

@@ -1,8 +1,11 @@
 package vn.hcmute.nhom02.foody.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        database = new Database(this, "foody_test1.sqlite", null, 1);
-        createTableUser();
-
+//        database = new Database(this, "foody_test1.sqlite", null, 1);
+//        createTableUser();
     }
 
     private void createTableUser() {
@@ -41,8 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name varchar(255)," +
                 "email varchar(255) unique, " +
-                "password varchar(20)," +
-                "avatar blob);");
+                "password varchar(20);");
+    }
+
+    private void dropTable(){
+        database.QueryData("DROP TABLE user;");
     }
 
 }

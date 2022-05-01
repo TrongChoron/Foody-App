@@ -16,18 +16,16 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private byte[] avatar;
 
     public User(){
 
     }
 
-    public User(Integer id, String name, String email, String password, byte[] avatar) {
+    public User(Integer id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.avatar = avatar;
     }
 
     public Integer getId() {
@@ -62,14 +60,6 @@ public class User {
         this.password = password;
     }
 
-    public byte[] getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
-    }
-
     @NonNull
     @Override
     public String toString() {
@@ -78,7 +68,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", avatar=" + Arrays.toString(avatar) +
                 '}';
     }
 }
