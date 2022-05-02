@@ -1,12 +1,14 @@
 package vn.hcmute.nhom02.foody.Domain;
 
-public class Drinks {
+public class Drink {
     private Integer id;
     private String name;
     private String pic;
     private String price;
+    private String type;
 
-    public Drinks( String name, String pic, String price) {
+    public Drink (){}
+    public Drink(String name, String pic, String price) {
         this.name = name;
         this.pic = pic;
         this.price = price;
@@ -44,12 +46,22 @@ public class Drinks {
         this.price = price;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return "CategoryDomain{" +
-                "name='" + name + '\'' +
+        return "Drinks{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", pic='" + pic + '\'' +
                 ", price='" + price + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

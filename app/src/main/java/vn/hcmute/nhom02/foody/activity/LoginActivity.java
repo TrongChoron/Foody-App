@@ -74,9 +74,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else {
-//            Boolean checkUser = database.checkEmailAndPassword(email,password);
-//            if(!checkUser)
-//                Toast.makeText(this, "sai mk hoac email", Toast.LENGTH_SHORT).show();
             try {
                 User user = userQuery.findByUserEmailAndPassword(email, password);
                 if (user != null) {

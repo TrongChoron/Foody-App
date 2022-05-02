@@ -46,18 +46,4 @@ public class Database extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE if exists user");
     }
 
-    public boolean checkUserName(String userName){
-        SQLiteDatabase myDB = this.getWritableDatabase();
-        Cursor cursor = myDB.rawQuery("Select * from user where name = ?", new String[]{userName});
-        if (cursor.getCount()>0)
-            return true;
-        else return false;
-    }
-    public  boolean checkEmailAndPassword(String email, String password){
-        SQLiteDatabase myDB = this.getWritableDatabase();
-        Cursor cursor = myDB.rawQuery("Select * from user where email = ? and password = ?", new String[]{email,password});
-        if (cursor.getCount()>0)
-            return true;
-        else return false;
-    }
 }

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import vn.hcmute.nhom02.foody.adapter.FoodAdapter;
-import vn.hcmute.nhom02.foody.Domain.Foods;
+import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.R;
 
 
@@ -36,11 +36,11 @@ public class FoodFragment extends Fragment {
         recyclerViewCategoryList = myFragment.findViewById(R.id.recyclerView);
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
-        ArrayList<Foods> categories = new ArrayList<>();
-        categories.add(new Foods("Bánh Canh","banhcanh","35,000.00đ"));
-        categories.add(new Foods("Cơm","com","25,000.00đ"));
-        categories.add(new Foods("Bún Bò","bunbo","40,000.00đ"));
-        categories.add(new Foods("Bún mắm","bunmam","35,000.00đ"));
+        ArrayList<Food> categories = new ArrayList<>();
+        categories.add(new Food("Bánh Canh","banhcanh","35,000.00đ"));
+        categories.add(new Food("Cơm","com","25,000.00đ"));
+        categories.add(new Food("Bún Bò","bunbo","40,000.00đ"));
+        categories.add(new Food("Bún mắm","bunmam","35,000.00đ"));
 
         adapter = new FoodAdapter(categories);
         recyclerViewCategoryList.setAdapter(adapter);

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Domain.Foods;
+import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.R;
 
 /**
@@ -23,7 +23,7 @@ import vn.hcmute.nhom02.foody.R;
  * Filename : OrderAdapter
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
-    ArrayList<Foods> foods;
+    ArrayList<Food> foods;
 
     @NonNull
     @Override

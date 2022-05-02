@@ -1,12 +1,16 @@
 package vn.hcmute.nhom02.foody.Domain;
 
-public class Foods {
+import androidx.annotation.NonNull;
+
+public class Food {
     private Integer id;
     private String name;
     private String pic;
     private String price;
+    private String type;
 
-    public Foods(String name, String pic, String price) {
+    public Food(){}
+    public Food(String name, String pic, String price) {
         this.name = name;
         this.pic = pic;
         this.price = price;
@@ -44,12 +48,23 @@ public class Foods {
         this.price = price;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @NonNull
     @Override
     public String toString() {
-        return "CategoryDomain{" +
-                "name='" + name + '\'' +
+        return "Foods{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", pic='" + pic + '\'' +
                 ", price='" + price + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

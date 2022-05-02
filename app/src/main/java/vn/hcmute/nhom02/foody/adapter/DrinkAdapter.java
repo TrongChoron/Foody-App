@@ -15,13 +15,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import vn.hcmute.nhom02.foody.Domain.Drinks;
+import vn.hcmute.nhom02.foody.Domain.Drink;
 import vn.hcmute.nhom02.foody.R;
 
 public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder>{
-    ArrayList<Drinks> drinks;
+    ArrayList<Drink> drinks;
 
-    public DrinkAdapter(ArrayList<Drinks> drinks) {
+    public DrinkAdapter(ArrayList<Drink> drinks) {
         this.drinks = drinks;
     }
 

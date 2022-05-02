@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import vn.hcmute.nhom02.foody.adapter.DrinkAdapter;
-import vn.hcmute.nhom02.foody.Domain.Drinks;
+import vn.hcmute.nhom02.foody.Domain.Drink;
 import vn.hcmute.nhom02.foody.R;
 
 
@@ -37,10 +37,10 @@ public class DinkFragment extends Fragment {
         recyclerViewCategoryList = myFragment.findViewById(R.id.recyclerView);
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
-        ArrayList<Drinks> categories = new ArrayList<>();
-        categories.add(new Drinks("Trà sữa","nuoc","35,000.00đ"));
-        categories.add(new Drinks("Cofee","caphe","20,000.00đ"));
-        categories.add(new Drinks("Trà sữa Boo","trasuaboo","35,000.00đ"));
+        ArrayList<Drink> categories = new ArrayList<>();
+        categories.add(new Drink("Trà sữa","nuoc","35,000.00đ"));
+        categories.add(new Drink("Cofee","caphe","20,000.00đ"));
+        categories.add(new Drink("Trà sữa Boo","trasuaboo","35,000.00đ"));
 
         adapter = new DrinkAdapter(categories);
         recyclerViewCategoryList.setAdapter(adapter);
