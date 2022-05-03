@@ -18,6 +18,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
     <!--    Error -->
+    <string name="enter_name">Enter name</string>
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="email_invalidate">Email invalidate</string>
