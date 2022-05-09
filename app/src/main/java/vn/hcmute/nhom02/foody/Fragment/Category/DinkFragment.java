@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import vn.hcmute.nhom02.foody.adapter.DrinkAdapter;
 import vn.hcmute.nhom02.foody.Domain.Drink;
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.common.Common;
 
 
 public class DinkFragment extends Fragment {
@@ -25,8 +26,11 @@ public class DinkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        myFragment = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dink, container, false);
 
+        myFragment = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dink, container, false);
+        if(Common.currentUser != null){
+
+        }
         recyclerViewCategory();
         return myFragment;
     }

@@ -38,9 +38,9 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
 
 
     @Override
-    public Integer updateName(User user) {
-        final String sql = "UPDATE user SET name = ? WHERE id = ?";
-        return update(sql, user.getName(), user.getId());
+    public Integer updateNameAndEmail(User user) {
+        final String sql = "UPDATE user SET name = ?, email = ? WHERE id = ?";
+        return update(sql, user.getName(), user.getEmail(), user.getId());
     }
 
     @Override

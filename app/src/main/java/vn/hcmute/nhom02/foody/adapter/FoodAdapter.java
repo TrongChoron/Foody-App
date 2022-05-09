@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.common.Common;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     ArrayList<Food> foods;
@@ -29,6 +30,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_tag, parent, false);
+        if(Common.currentUser != null)
+            inflate = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.category_after_login, parent, false);
         return new ViewHolder(inflate);
     }
 
