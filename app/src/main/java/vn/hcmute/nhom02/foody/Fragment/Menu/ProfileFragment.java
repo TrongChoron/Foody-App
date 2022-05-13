@@ -34,6 +34,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.activity.ChangePassActivity;
 import vn.hcmute.nhom02.foody.activity.LoginActivity;
 import vn.hcmute.nhom02.foody.activity.MainActivity;
 import vn.hcmute.nhom02.foody.activity.UpdateProfileActivity;
@@ -47,7 +48,7 @@ import vn.hcmute.nhom02.foody.signup.User;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView tvName, tvEmail;
+    private TextView tvName, tvEmail,tvChangePass;
     private TextInputEditText edtName, edtPhone, edtAddress;
     private ImageButton ibCamera, ibFileUpload;
     private Button btnSave, btnLogOut;
@@ -63,6 +64,10 @@ public class ProfileFragment extends Fragment {
         biding();
 
         setInfoUser();
+
+        tvChangePass.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity().getApplicationContext(), ChangePassActivity.class));
+        });
 
         btnSave.setOnClickListener(view -> {
             final String name = Objects.requireNonNull(edtName.getText()).toString();
@@ -178,6 +183,7 @@ public class ProfileFragment extends Fragment {
         ibCamera = view.findViewById(R.id.ib_camera);
         ibFileUpload = view.findViewById(R.id.ib_file_upload);
         ivProfile = view.findViewById(R.id.iv_profile);
+        tvChangePass = view.findViewById(R.id.changePassTV);
     }
 
 

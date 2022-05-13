@@ -19,6 +19,7 @@
     <string name="title_profile">Profile</string>
     <!--    Error -->
     <string name="enter_name">Enter name</string>
+    <string name="enter_confirmPass">Enter Confirm Password</string>
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="email_invalidate">Email invalidate</string>
@@ -32,4 +33,5 @@
     <string name="login_successfully">Login Success</string>
     <string name="select_category">Select Category</string>
     <string name="restaurant">Restaurant</string>
+    <string name="change_password_succesfully">Change Password Success</string>
 </resources>

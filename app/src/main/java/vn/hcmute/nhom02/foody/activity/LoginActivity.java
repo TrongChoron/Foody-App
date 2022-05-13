@@ -76,31 +76,30 @@ public class LoginActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             edtEmail.setError("Enter Email");
             edtEmail.requestFocus();
-        }else if (!isValidEmail(email)) {
+        } else if (!isValidEmail(email)) {
             edtEmail.setError(getString(R.string.email_invalidate));
             edtEmail.requestFocus();
-        }else if (password.isEmpty()) {
+        } else if (password.isEmpty()) {
             edtPassword.setError("Enter Password");
             edtPassword.requestFocus();
-        }
-        else {
+        } else {
             User user = userQuery.findByUserEmailAndPassword(email, password);
-            if(user.getEmail().equals("admin@gmail.com" )){
-                Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("email");
-                editor.remove("password");
-                editor.remove("checked");
-                editor.commit();
-                Intent intent = new Intent(LoginActivity.this, ManageActivity.class);
-                Common.currentUser = user;
-                startActivity(intent);
-                SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
-                Utils.setPreferences(Common.currentUser, sharedPreferences);
-                finish();
-            }else {
-                try {
-                    if (user != null) {
+            if (user != null) {
+                if (user.getEmail().equals("admin@gmail.com")) {
+                    Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("email");
+                    editor.remove("password");
+                    editor.remove("checked");
+                    editor.commit();
+                    Intent intent = new Intent(LoginActivity.this, ManageActivity.class);
+                    Common.currentUser = user;
+                    startActivity(intent);
+                    SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
+                    Utils.setPreferences(Common.currentUser, sharedPreferences);
+                    finish();
+                } else {
+                    try {
                         Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
                         if (cbRemember.isChecked()) {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -121,30 +120,31 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
                         Utils.setPreferences(Common.currentUser, sharedPreferences);
                         finish();
-                    } else {
-                        Toast.makeText(this, getString(R.string.email_or_password_incorrect), Toast.LENGTH_SHORT).show();
+                    } catch (Exception ex) {
+                        Toast.makeText(this, getString(R.string.server_error, ex.getMessage()), Toast.LENGTH_SHORT).show();
                     }
-                } catch (Exception ex) {
-                    Toast.makeText(this, getString(R.string.server_error, ex.getMessage()), Toast.LENGTH_SHORT).show();
                 }
+
+            } else {
+                Toast.makeText(this, getString(R.string.email_or_password_incorrect), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void bidingView() {
-        edtEmail = findViewById(R.id.edtEmail);
-        edtPassword = findViewById(R.id.edtPassword);
-        cbRemember = findViewById(R.id.cb_remember);
-    }
+        private void bidingView () {
+            edtEmail = findViewById(R.id.edtEmail);
+            edtPassword = findViewById(R.id.edtPassword);
+            cbRemember = findViewById(R.id.cb_remember);
+        }
 
-    private boolean isValidEmail(String email) {
-        Pattern pattern;
-        Matcher matcher;
-        final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        pattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
+        private boolean isValidEmail (String email){
+            Pattern pattern;
+            Matcher matcher;
+            final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            pattern = Pattern.compile(EMAIL_PATTERN);
+            matcher = pattern.matcher(email);
+            return matcher.matches();
+        }
 
-}
+    }
