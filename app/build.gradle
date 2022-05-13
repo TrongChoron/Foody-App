@@ -50,4 +50,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     //Gson...
     implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'de.hdodenhof:circleimageview:1.2.1'
 }

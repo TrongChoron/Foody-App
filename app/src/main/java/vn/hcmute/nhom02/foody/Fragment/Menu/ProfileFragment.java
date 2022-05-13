@@ -6,22 +6,33 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.io.InputStream;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.activity.LoginActivity;
 import vn.hcmute.nhom02.foody.activity.MainActivity;
@@ -36,9 +47,12 @@ import vn.hcmute.nhom02.foody.signup.User;
 
 public class ProfileFragment extends Fragment {
 
-    private EditText edtEmail, edtName;
+    private TextView tvName, tvEmail;
+    private TextInputEditText edtName, edtPhone, edtAddress;
+    private ImageButton ibCamera, ibFileUpload;
+    private Button btnSave, btnLogOut;
+    private CircleImageView ivProfile;
     private final IUserQuery userQuery = UserQuery.getInstance();
-    private Button btnSave,btnLogOut;
     View view;
 
     @Override
@@ -47,16 +61,23 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         biding();
-        edtEmail.setText(Common.currentUser.getEmail());
-        edtName.setText(Common.currentUser.getName());
+
+        setInfoUser();
 
         btnSave.setOnClickListener(view -> {
             final String name = Objects.requireNonNull(edtName.getText()).toString();
-            final String email = Objects.requireNonNull(edtEmail.getText()).toString();
+            final String phone = Objects.requireNonNull(edtPhone.getText()).toString();
+            final String address = Objects.requireNonNull(edtAddress.getText()).toString();
+            Common.currentUser.setAvatar(Utils.convertImageViewToBytes(ivProfile));
             try {
                 User user = userQuery.findById(Common.currentUser.getId());
-                if (!user.getName().equals(name) || !user.getEmail().equals(email)) {
-                    updateNameAndEmail(user);
+                if (!user.getName().equals(name)
+                        || !user.getPhone().equals(phone)
+                        || !user.getAddress().equals(address)) {
+                    updateProfile(user);
+                    setInfoUser();
+                } else {
+                    updateOnlyPhoto(user);
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -70,20 +91,26 @@ public class ProfileFragment extends Fragment {
             startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
         });
 
+        ibCamera.setOnClickListener(view -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
+        });
+
+        ibFileUpload.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, Constants.REQUEST_CODE_FOLDER);
+        });
+
         return view;
     }
 
-    private void updateNameAndEmail(User user) {
-        try{
+    private void updateOnlyPhoto(User user) {
+        try {
             if (user != null) {
-                final String name = Objects.requireNonNull(edtName.getText()).toString();
-                final String email = Objects.requireNonNull(edtEmail.getText()).toString();
-                user.setName(name);
-                user.setEmail(email);
-                Integer updateUser = userQuery.updateNameAndEmail(user);
+                user.setAvatar(Common.currentUser.getAvatar());
+                Integer updateUser = userQuery.updateOnlyPhoto(user);
                 if (updateUser > 0) {
-                    Common.currentUser.setName(name);
-                    Common.currentUser.setEmail(email);
                     SharedPreferences sharedPreferences = this.requireContext().getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
                     Utils.setPreferences(Common.currentUser, sharedPreferences);
                     Toast.makeText(this.getContext(), R.string.update_profile_successfully, Toast.LENGTH_SHORT).show();
@@ -91,18 +118,108 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(this.getContext(), R.string.update_profile_failed, Toast.LENGTH_SHORT).show();
                 }
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(this.getContext(), getString(R.string.server_error, ex.getMessage()), Toast.LENGTH_SHORT).show();
         }
-        catch (Exception ex) {
+
+    }
+
+    private void setInfoUser() {
+        tvName.setText(Common.currentUser.getName());
+        tvEmail.setText(Common.currentUser.getEmail());
+        edtName.setText(Common.currentUser.getName());
+        edtPhone.setText(Common.currentUser.getPhone());
+        edtAddress.setText(Common.currentUser.getAddress());
+        byte[] avatar = Common.currentUser.getAvatar();
+        if (avatar != null) {
+            ivProfile.setImageBitmap(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
+        }
+    }
+
+    private void updateProfile(User user) {
+        try {
+            if (user != null) {
+                final String name = Objects.requireNonNull(edtName.getText()).toString();
+                final String phone = Objects.requireNonNull(edtPhone.getText()).toString();
+                final String address = Objects.requireNonNull(edtAddress.getText()).toString();
+                final byte[] avatar = Utils.convertImageViewToBytes(ivProfile);
+                user.setName(name);
+                user.setPhone(phone);
+                user.setAddress(address);
+                user.setAvatar(avatar);
+                Integer updateUser = userQuery.updateProfile(user);
+                if (updateUser > 0) {
+                    Common.currentUser.setName(name);
+                    Common.currentUser.setPhone(phone);
+                    Common.currentUser.setAddress(address);
+                    Common.currentUser.setAvatar(avatar);
+                    SharedPreferences sharedPreferences = this.requireContext().getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
+                    Utils.setPreferences(Common.currentUser, sharedPreferences);
+                    Toast.makeText(this.getContext(), R.string.update_profile_successfully, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this.getContext(), R.string.update_profile_failed, Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
             Toast.makeText(this.getContext(), getString(R.string.server_error, ex.getMessage()), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void biding() {
+        tvName = view.findViewById(R.id.tv_fullname);
+        tvEmail = view.findViewById(R.id.tv_email);
         edtName = view.findViewById(R.id.etName);
-        edtEmail = view.findViewById(R.id.etEmail);
+        edtPhone = view.findViewById(R.id.etPhone);
+        edtAddress = view.findViewById(R.id.etAddress);
         btnSave = view.findViewById(R.id.btnSave);
         btnLogOut = view.findViewById(R.id.buttonLogout);
+        ibCamera = view.findViewById(R.id.ib_camera);
+        ibFileUpload = view.findViewById(R.id.ib_file_upload);
+        ivProfile = view.findViewById(R.id.iv_profile);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == Constants.REQUEST_CODE_CAMERA && resultCode == getActivity().RESULT_OK && data != null) {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            ivProfile.setImageBitmap(bitmap);
+        }
+        if (requestCode == Constants.REQUEST_CODE_FOLDER && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            try {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
+                Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream),
+                        ivProfile.getWidth(), ivProfile.getHeight(), true);
+                ivProfile.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void btnSaveClick(View view) {
+        final String name = Objects.requireNonNull(edtName.getText()).toString();
+        final String phone = Objects.requireNonNull(edtPhone.getText()).toString();
+        final String address = Objects.requireNonNull(edtAddress.getText()).toString();
+        Common.currentUser.setAvatar(Utils.convertImageViewToBytes(ivProfile));
+        try {
+            User user = userQuery.findById(Common.currentUser.getId());
+            if (!user.getName().equals(name)
+                    || !user.getPhone().equals(phone)
+                    || !user.getAddress().equals(address)) {
+                updateProfile(user);
+                setInfoUser();
+            } else {
+                updateOnlyPhoto(user);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

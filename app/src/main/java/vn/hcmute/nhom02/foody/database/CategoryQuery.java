@@ -25,14 +25,14 @@ public class CategoryQuery extends AbstractQuery<CategoryModel> implements ICate
 
     @Override
     public Long insert(CategoryModel categoryModel) {
-        final String sql = "INSERT INTO category VALUES(null, ?, ?)";
-        return insert(sql, categoryModel.getName(), categoryModel.getCode());
+        final String sql = "INSERT INTO category VALUES(null, ?)";
+        return insert(sql, categoryModel.getName());
     }
 
 
     @Override
-    public CategoryModel findByCode(String code) {
-        final String sql = "SELECT * FROM category WHERE code = '" + code + "' ";
+    public CategoryModel findByName(String name) {
+        final String sql = "SELECT * FROM category WHERE name = '" + name + "' ";
         List results = query(sql, new CategoryMapper());
         return results.size() > 0 ? (CategoryModel) results.get(0) : null;
     }

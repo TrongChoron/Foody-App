@@ -26,9 +26,10 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
 
     @Override
     public Long insert(User user) {
-        final String sql = "INSERT INTO user VALUES(null, ?, ?, ?)";
-        return insert(sql, user.getName(), user.getEmail(), user.getPassword());
+        final String sql = "INSERT INTO user VALUES(null, ?, ?, ?, ?, ?, ?)";
+        return insert(sql, user.getName(), user.getEmail(), user.getPassword(),user.getPhone(),user.getAddress(),user.getAvatar());
     }
+
 
     @Override
     public Integer updatePassword(User user) {
@@ -36,11 +37,23 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
         return update(sql, user.getPassword(), user.getId());
     }
 
+    @Override
+    public Integer updateOnlyPhoto(User user) {
+        final String sql = "UPDATE user SET avatar = ? WHERE id = ?";
+        return update(sql, user.getAvatar(), user.getId());
+    }
 
     @Override
-    public Integer updateNameAndEmail(User user) {
-        final String sql = "UPDATE user SET name = ?, email = ? WHERE id = ?";
-        return update(sql, user.getName(), user.getEmail(), user.getId());
+    public Integer updatePhotoAndName(User user) {
+        final String sql = "UPDATE user SET avatar = ? , name = ? WHERE id = ?";
+        return update(sql,user.getAvatar(),user.getName(),user.getId());
+    }
+
+
+    @Override
+    public Integer updateProfile(User user) {
+        final String sql = "UPDATE user SET name = ?, phone = ?, address = ?, avatar = ? WHERE id = ?";
+        return update(sql, user.getName(), user.getPhone(),user.getAddress(),user.getAvatar(), user.getId());
     }
 
     @Override

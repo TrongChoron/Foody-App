@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation"
+    app:startDestination="@+id/navigation_notifications">
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="vn.hcmute.nhom02.foody.Fragment.Menu.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_restaurant"
+        android:name="vn.hcmute.nhom02.foody.Fragment.manage.ManageRestaurant"
+        android:label="@string/restaurant"
+        tools:layout="@layout/fragment_manage_restaurant" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="vn.hcmute.nhom02.foody.Fragment.Menu.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

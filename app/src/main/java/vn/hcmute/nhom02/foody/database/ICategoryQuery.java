@@ -12,7 +12,7 @@ import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 public interface ICategoryQuery extends GenericQuery<CategoryModel> {
     Long insert(CategoryModel categoryModel);
 
-    CategoryModel findByCode(String code);
+    CategoryModel findByName(String name);
 
     CategoryModel findById(Integer id);
 }

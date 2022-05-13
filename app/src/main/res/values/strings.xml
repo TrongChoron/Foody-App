@@ -24,8 +24,12 @@
     <string name="email_invalidate">Email invalidate</string>
     <string name="password_mismatch">Password mismatch</string>
     <string name="sign_up_failed">Sign up failed : %1$s</string>
+    <string name="email_existed">Email  Existed: %1$s</string>
     <!--    Success -->
     <string name="sign_up_successfully">Sign up successfully!</string>
     <string name="update_profile_successfully">Update Success</string>
     <string name="update_profile_failed">Update Failed</string>
+    <string name="login_successfully">Login Success</string>
+    <string name="select_category">Select Category</string>
+    <string name="restaurant">Restaurant</string>
 </resources>

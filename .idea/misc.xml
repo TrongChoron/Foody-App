@@ -10,8 +10,9 @@
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_drink.xml" value="0.1" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_food.xml" value="0.1539855072463768" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_intro.xml" value="0.264" />
-        <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_manage.xml" value="0.1539855072463768" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_order.xml" value="0.1539855072463768" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/activity_slash.xml" value="0.23645833333333333" />
@@ -23,9 +24,12 @@
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/fragment_dink.xml" value="0.23645833333333333" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/fragment_food.xml" value="0.23645833333333333" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/fragment_home.xml" value="0.1539855072463768" />
+        <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/fragment_manage_restaurant.xml" value="0.264" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/fragment_order.xml" value="0.23645833333333333" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/list_item.xml" value="0.1539855072463768" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/layout/main_form.xml" value="0.1539855072463768" />
+        <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/menu/admin_nav_menu.xml" value="0.23645833333333333" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23645833333333333" />
         <entry key="..\:/Android_Project_Folder/FoodyApp/app/src/main/res/menu/bottommenu.xml" value="0.23645833333333333" />
       </map>

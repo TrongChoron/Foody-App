@@ -13,4 +13,5 @@ public class Constants {
     public final static int REQUEST_CODE_USER = 12;
 
     public final static String SHARED_PREFERENCE_USER_STATE = "USER";
+    public final static String DATA_LOGIN = "DATA_LOGIN";
 }

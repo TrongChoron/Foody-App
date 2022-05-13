@@ -7,7 +7,7 @@
     tools:context=".signup.RegisterActivity">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/ivProfile"
         android:layout_width="212dp"
         android:layout_height="206dp"
         android:src="@drawable/user"
@@ -25,7 +25,7 @@
         android:background="@drawable/background_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image">
+        app:layout_constraintTop_toBottomOf="@+id/ivProfile">
 
         <com.google.android.material.textfield.TextInputLayout
 
@@ -108,7 +108,7 @@
             android:layout_marginTop="20dp"
             android:text="Sign Up"
             android:backgroundTint="@color/mainColor"
-            android:onClick="buttonLoginClick"
+            android:onClick="buttonSignUpClick"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etConfirmPasswordLayout">

@@ -1,5 +1,7 @@
 package vn.hcmute.nhom02.foody.Domain;
 
+import androidx.annotation.NonNull;
+
 /**
  * Create by: IntelliJ IDEA
  * User     : trongnt
@@ -10,15 +12,13 @@ package vn.hcmute.nhom02.foody.Domain;
 public class CategoryModel {
     private Integer id;
     private String name;
-    private String code;
 
     public CategoryModel() {
     }
 
-    public CategoryModel(Integer id, String name, String code) {
+    public CategoryModel(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.code = code;
     }
 
     public Integer getId() {
@@ -37,11 +37,12 @@ public class CategoryModel {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    @NonNull
+    @Override
+    public String toString() {
+        return "CategoryModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

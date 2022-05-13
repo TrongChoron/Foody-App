@@ -15,9 +15,10 @@ import androidx.annotation.Nullable;
  * Filename : Database
  */
 public class Database extends SQLiteOpenHelper {
-    public static final String DBNAME="test.db";
+    public static final String DBNAME = "test2.db";
+
     public Database(@Nullable Context context) {
-        super(context, "test.db", null, 1);
+        super(context, "test2.db", null, 1);
     }
 
     // truy vấn không trả kết quả: CREATE, INSERT, UPDATE, DELETE...
@@ -27,23 +28,46 @@ public class Database extends SQLiteOpenHelper {
     }
 
     //Truy vấn có trả kết quả: SELECT
-    public Cursor getData(String query){
+    public Cursor getData(String query) {
         SQLiteDatabase database = getReadableDatabase();
-        return database.rawQuery(query,null);
+        return database.rawQuery(query, null);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+//        SQLiteDatabase database = getWritableDatabase();
+        sqLiteDatabase.execSQL("DROP TABLE if exists user");
+//        Create Table user
         sqLiteDatabase.execSQL("create table if not exists user (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "name varchar(255)," +
-                        "email varchar(255) unique," +
-                        "password varchar(20))");
+                "name varchar(255)," +
+                "email varchar(255) unique," +
+                "password varchar(20)," +
+                "phone varchar(10) ," +
+                "address varchar(255)," +
+                "avatar blob)");
+//        Create Category table
+        sqLiteDatabase.execSQL("create table if not exists category(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255) " +
+                ")");
+//        Insert into category table
+//        sqLiteDatabase.execSQL("INSERT INTO category VALUES(null, 'Food')");
+//        sqLiteDatabase.execSQL("INSERT INTO category VALUES(null, 'Drink')");
+//        Create Restaurant Table
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS restaurant(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255), " +
+                "address varchar(255)," +
+                "pic blob,"+
+                "categoryID INTEGER NOT NULL," +
+                " FOREIGN KEY (categoryID) REFERENCES category(id))"
+        );
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE if exists user");
     }
 
 }

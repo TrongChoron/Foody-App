@@ -14,7 +14,11 @@ public interface IUserQuery extends GenericQuery<User> {
 
     Integer updatePassword(User user);
 
-    Integer updateNameAndEmail(User user);
+    Integer updateOnlyPhoto(User user);
+
+    Integer updatePhotoAndName(User user);
+
+    Integer updateProfile(User user);
 
     User findById(Integer id);
 

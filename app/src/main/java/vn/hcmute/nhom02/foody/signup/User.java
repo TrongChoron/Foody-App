@@ -16,16 +16,22 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String phone;
+    private String address;
+    private byte[] avatar;
 
     public User(){
 
     }
 
-    public User(Integer id, String name, String email, String password) {
+    public User(Integer id, String name, String email,  String password,String phone, String address, byte[] avatar) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.password = password;
+        this.address = address;
+        this.avatar=avatar;
     }
 
     public Integer getId() {
@@ -60,7 +66,30 @@ public class User {
         this.password = password;
     }
 
-    @NonNull
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -68,6 +97,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", avatar=" + Arrays.toString(avatar) +
                 '}';
     }
 }
