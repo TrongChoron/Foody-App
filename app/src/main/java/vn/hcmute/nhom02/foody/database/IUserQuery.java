@@ -1,5 +1,7 @@
 package vn.hcmute.nhom02.foody.database;
 
+import java.util.List;
+
 import vn.hcmute.nhom02.foody.signup.User;
 
 /**
@@ -16,7 +18,7 @@ public interface IUserQuery extends GenericQuery<User> {
 
     Integer updateOnlyPhoto(User user);
 
-    Integer updatePhotoAndName(User user);
+    List<User> getAllUser();
 
     Integer updateProfile(User user);
 

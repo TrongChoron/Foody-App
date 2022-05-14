@@ -44,8 +44,8 @@ public class RestaurantQuery extends AbstractQuery<Restaurant> implements IResta
     }
 
     @Override
-    public List<Restaurant> findByCategory(String categoryId) {
-        final String sql = "SELECT * FROM restaurant WHERE categoryID = '" + categoryId + "' ";
+    public List<Restaurant> findByCategory(Integer categoryId) {
+        final String sql = "SELECT * FROM restaurant WHERE categoryID = " + categoryId + " ";
         List<Restaurant> results = query(sql, new RestaurantMapper());
         return results.size() > 0 ? results : null;
     }

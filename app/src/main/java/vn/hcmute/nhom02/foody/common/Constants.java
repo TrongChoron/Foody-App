@@ -14,4 +14,5 @@ public class Constants {
 
     public final static String SHARED_PREFERENCE_USER_STATE = "USER";
     public final static String DATA_LOGIN = "DATA_LOGIN";
+    public final static String DATABASE = "test1.sqlite";
 }

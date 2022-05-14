@@ -2,8 +2,6 @@ package vn.hcmute.nhom02.foody.Fragment.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -11,18 +9,14 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,8 +30,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.activity.ChangePassActivity;
 import vn.hcmute.nhom02.foody.activity.LoginActivity;
-import vn.hcmute.nhom02.foody.activity.MainActivity;
-import vn.hcmute.nhom02.foody.activity.UpdateProfileActivity;
 import vn.hcmute.nhom02.foody.common.Common;
 import vn.hcmute.nhom02.foody.common.Constants;
 import vn.hcmute.nhom02.foody.common.Utils;

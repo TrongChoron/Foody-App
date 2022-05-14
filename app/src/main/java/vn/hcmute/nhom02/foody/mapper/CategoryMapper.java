@@ -17,6 +17,7 @@ public class CategoryMapper implements RowMapper<CategoryModel> {
         CategoryModel category = new CategoryModel();
         category.setId(cs.getInt(0));
         category.setName(cs.getString(1));
+        category.setCode(cs.getString(2));
         return category;
     }
 }

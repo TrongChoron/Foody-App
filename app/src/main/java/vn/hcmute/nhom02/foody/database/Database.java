@@ -18,7 +18,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String DBNAME = "test2.db";
 
     public Database(@Nullable Context context) {
-        super(context, "test2.db", null, 1);
+        super(context, DBNAME, null, 1);
     }
 
     // truy vấn không trả kết quả: CREATE, INSERT, UPDATE, DELETE...
@@ -35,8 +35,6 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-//        SQLiteDatabase database = getWritableDatabase();
-        sqLiteDatabase.execSQL("DROP TABLE if exists user");
 //        Create Table user
         sqLiteDatabase.execSQL("create table if not exists user (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -49,11 +47,9 @@ public class Database extends SQLiteOpenHelper {
 //        Create Category table
         sqLiteDatabase.execSQL("create table if not exists category(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255) " +
+                "name varchar(255), " +
+                "code varchar(255)"+
                 ")");
-//        Insert into category table
-//        sqLiteDatabase.execSQL("INSERT INTO category VALUES(null, 'Food')");
-//        sqLiteDatabase.execSQL("INSERT INTO category VALUES(null, 'Drink')");
 //        Create Restaurant Table
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS restaurant(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -63,6 +59,28 @@ public class Database extends SQLiteOpenHelper {
                 "categoryID INTEGER NOT NULL," +
                 " FOREIGN KEY (categoryID) REFERENCES category(id))"
         );
+//        Create Food Table
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS food(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255), " +
+                "description varchar(255)," +
+                "price float,"+
+                "pic blob,"+
+                "restaurantID INTEGER NOT NULL," +
+                " FOREIGN KEY (restaurantID) REFERENCES restaurant(id))"
+        );
+//        Create Order Table
+        sqLiteDatabase.execSQL("create table if not exists orders (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "photo_food blob, " +
+                "count INTEGER, " +
+                "food_name varchar(255), " +
+                "food_description varchar(255), " +
+                "price float, " +
+                "product_id INTEGER, " +
+                "user_id INTEGER" +
+                ")");
+
     }
 
 

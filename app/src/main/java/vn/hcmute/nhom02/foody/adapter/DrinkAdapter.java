@@ -30,7 +30,7 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_tag, parent, false);
+                .inflate(R.layout.restaurant_tag, parent, false);
         if(Common.currentUser != null)
         inflate = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.category_after_login, parent, false);

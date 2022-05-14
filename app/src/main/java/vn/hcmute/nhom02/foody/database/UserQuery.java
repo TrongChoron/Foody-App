@@ -44,9 +44,9 @@ public class UserQuery extends AbstractQuery<User> implements IUserQuery {
     }
 
     @Override
-    public Integer updatePhotoAndName(User user) {
-        final String sql = "UPDATE user SET avatar = ? , name = ? WHERE id = ?";
-        return update(sql,user.getAvatar(),user.getName(),user.getId());
+    public List<User> getAllUser() {
+        final String sql = "SELECT * FROM user";
+        return query(sql,new UserMapper());
     }
 
 

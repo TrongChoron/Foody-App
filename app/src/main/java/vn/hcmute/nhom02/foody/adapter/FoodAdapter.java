@@ -1,5 +1,6 @@
 package vn.hcmute.nhom02.foody.adapter;
 
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,87 +16,55 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 import vn.hcmute.nhom02.foody.Domain.Food;
+import vn.hcmute.nhom02.foody.Domain.Restaurant;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.common.Common;
+import vn.hcmute.nhom02.foody.database.CategoryQuery;
+import vn.hcmute.nhom02.foody.database.ICategoryQuery;
+import vn.hcmute.nhom02.foody.database.IRestaurantQuery;
+import vn.hcmute.nhom02.foody.database.RestaurantQuery;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
-    ArrayList<Food> foods;
+    ArrayList<Restaurant> restaurants;
 
-    public FoodAdapter(ArrayList<Food> foods) {
-        this.foods = foods;
+
+    public FoodAdapter(ArrayList<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_tag, parent, false);
-        if(Common.currentUser != null)
-            inflate = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.category_after_login, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_tag, parent, false);
         return new ViewHolder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
-        holder.categoryName.setText(foods.get(position).getName());
-        holder.price.setText(foods.get(position).getPrice());
-        String picUrl = "";
-        switch (position) {
-            case 0: {
-                picUrl = "banhcanh";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.banhcanh));
-                break;
-            }
-            case 1: {
-                picUrl = "com";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.com));
-                break;
-            }
-            case 2: {
-                picUrl = "bunbo";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.bunbo));
-                break;
-            }
-            case 3: {
-                picUrl = "bunmam";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.bunmam));
-                break;
-            }
-        }
-        int drawableResourceId = holder.itemView
-                .getContext()
-                .getResources()
-                .getIdentifier(picUrl, "drawable"
-                        , holder.itemView
-                                .getContext()
-                                .getPackageName());
-        Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
-                .into(holder.categoryPic);
+        holder.restaurantName.setText(restaurants.get(position).getName());
+        holder.address.setText(restaurants.get(position).getAddress());
+        byte[] avatar = restaurants.get(position).getRestaurantImage();
+        holder.restaurantPic.setImageBitmap(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
     }
 
     @Override
     public int getItemCount() {
-        return foods.size();
+        return restaurants.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView categoryName;
-        TextView price;
-        ImageView categoryPic;
+        TextView restaurantName, address;
+        ImageView restaurantPic;
         ConstraintLayout mainLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            categoryName = itemView.findViewById(R.id.categoryName);
-            price = itemView.findViewById(R.id.price);
-            categoryPic = itemView.findViewById(R.id.categoryPic);
+            restaurantName = itemView.findViewById(R.id.restaurantName);
+            address = itemView.findViewById(R.id.addressTV);
+            restaurantPic = itemView.findViewById(R.id.restaurantPic);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }

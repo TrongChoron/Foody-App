@@ -12,13 +12,15 @@ import androidx.annotation.NonNull;
 public class CategoryModel {
     private Integer id;
     private String name;
+    private String code;
 
     public CategoryModel() {
     }
 
-    public CategoryModel(Integer id, String name) {
+    public CategoryModel(Integer id, String name,String code) {
         this.id = id;
         this.name = name;
+        this.code= code;
     }
 
     public Integer getId() {
@@ -37,12 +39,21 @@ public class CategoryModel {
         this.name = name;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @NonNull
     @Override
     public String toString() {
         return "CategoryModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
                 '}';
     }
 }

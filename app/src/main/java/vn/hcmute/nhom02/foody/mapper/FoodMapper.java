@@ -3,6 +3,7 @@ package vn.hcmute.nhom02.foody.mapper;
 import android.database.Cursor;
 
 import vn.hcmute.nhom02.foody.Domain.Food;
+import vn.hcmute.nhom02.foody.Domain.FoodModel;
 
 /**
  * Create by: IntelliJ IDEA
@@ -14,12 +15,13 @@ import vn.hcmute.nhom02.foody.Domain.Food;
 public class FoodMapper implements RowMapper{
     @Override
     public Object mapRow(Cursor cs) {
-        Food food = new Food();
+        FoodModel food = new FoodModel();
         food.setId(cs.getInt(0));
-        food.setName(cs.getString(1));
-        food.setPic(cs.getString(2));
-        food.setPrice(cs.getString(3));
-        food.setType(cs.getString(4));
+        food.setFoodName(cs.getString(1));
+        food.setFoodDescription(cs.getString(2));
+        food.setPrice(cs.getFloat(3));
+        food.setPhotoFood(cs.getBlob(4));
+        food.setRestaurantID(cs.getInt(5));
         return food;
     }
 }

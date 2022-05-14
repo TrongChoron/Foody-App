@@ -12,20 +12,32 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import vn.hcmute.nhom02.foody.Domain.CategoryModel;
+import vn.hcmute.nhom02.foody.Domain.Restaurant;
 import vn.hcmute.nhom02.foody.adapter.FoodAdapter;
 import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.database.CategoryQuery;
+import vn.hcmute.nhom02.foody.database.ICategoryQuery;
+import vn.hcmute.nhom02.foody.database.IRestaurantQuery;
+import vn.hcmute.nhom02.foody.database.RestaurantQuery;
 
 
 public class FoodFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewCategoryList;
     View myFragment;
+    private  ArrayList<Restaurant> restaurants;
+    private final IRestaurantQuery restaurantQuery = RestaurantQuery.getInstance();
+    private final ICategoryQuery categoryQuery = CategoryQuery.getInstance();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        myFragment = LayoutInflater.from(getContext()).inflate(R.layout.fragment_food,container,false);
+        myFragment = inflater.inflate(R.layout.fragment_food,container,false);
+        CategoryModel categoryModel = categoryQuery.findByCode("DA");
+        restaurants = (ArrayList<Restaurant>) restaurantQuery.findByCategory(categoryModel.getId());
         recyclerViewCategory();
         return myFragment;
     }
@@ -36,13 +48,8 @@ public class FoodFragment extends Fragment {
         recyclerViewCategoryList = myFragment.findViewById(R.id.recyclerView);
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
-        ArrayList<Food> categories = new ArrayList<>();
-        categories.add(new Food("Bánh Canh","banhcanh","35,000.00đ"));
-        categories.add(new Food("Cơm","com","25,000.00đ"));
-        categories.add(new Food("Bún Bò","bunbo","40,000.00đ"));
-        categories.add(new Food("Bún mắm","bunmam","35,000.00đ"));
 
-        adapter = new FoodAdapter(categories);
+        adapter = new FoodAdapter(restaurants);
         recyclerViewCategoryList.setAdapter(adapter);
     }
 }

@@ -11,15 +11,20 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.common.Common;
 import vn.hcmute.nhom02.foody.common.Constants;
 import vn.hcmute.nhom02.foody.common.Utils;
+import vn.hcmute.nhom02.foody.database.CategoryQuery;
 import vn.hcmute.nhom02.foody.database.Database;
+import vn.hcmute.nhom02.foody.database.ICategoryQuery;
 import vn.hcmute.nhom02.foody.database.IUserQuery;
 import vn.hcmute.nhom02.foody.database.UserQuery;
 import vn.hcmute.nhom02.foody.signup.RegisterActivity;
@@ -31,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox cbRemember;
     SharedPreferences sharedPreferences;
     private final IUserQuery userQuery = UserQuery.getInstance();
+    private final ICategoryQuery categoryQuery = CategoryQuery.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +44,26 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         bidingView();
 
+
         sharedPreferences = getSharedPreferences(Constants.DATA_LOGIN, MODE_PRIVATE);
         edtEmail.setText(sharedPreferences.getString("email", ""));
         edtPassword.setText(sharedPreferences.getString("password", ""));
         cbRemember.setChecked(sharedPreferences.getBoolean("checked", false));
 
 
+//        CategoryModel categoryModel = new CategoryModel(null, "Food", "DA");
+//        Long insert = categoryQuery.insert(categoryModel);
+//        Integer delete = categoryQuery.delete(3);
+
+        List<User> categoryModels = new ArrayList<>();
+        List<User> results = userQuery.getAllUser();
+        if(results !=null)
+        categoryModels.addAll(results);
+
+        System.out.println(String.valueOf(categoryModels));
+
     }
 
-    private void createTableUser() {
-        database.QueryData("create table if not exists user (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255)," +
-                "email varchar(255) unique," +
-                "password varchar(20))");
-    }
 
     public void tvSignUpClick(View view) {
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));

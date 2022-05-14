@@ -24,6 +24,9 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_slash);
         database = new Database(this);
         bindingView();
+        createTableCategory();
+        createTableRestaurant();
+//            dropCategoryTable();
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -42,6 +45,27 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void createTableCategory() {
+        database.QueryData("create table if not exists category(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255), " +
+                "code varchar(255)" +
+                ")");
+    }
+
+    private void createTableRestaurant(){
+        database.QueryData("CREATE TABLE IF NOT EXISTS restaurant(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255), " +
+                "address varchar(255)," +
+                "pic blob,"+
+                "categoryID INTEGER NOT NULL," +
+                " FOREIGN KEY (categoryID) REFERENCES category(id))");
+    }
+    private void dropCategoryTable(){
+        database.QueryData("Drop table category");
     }
 
     private void bindingView() {

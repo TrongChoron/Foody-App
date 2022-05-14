@@ -19,5 +19,5 @@ public interface IRestaurantQuery extends GenericQuery<Restaurant>{
 
     Restaurant findById(Integer id);
 
-    List<Restaurant> findByCategory(String categoryId);
+    List<Restaurant> findByCategory(Integer categoryId);
 }

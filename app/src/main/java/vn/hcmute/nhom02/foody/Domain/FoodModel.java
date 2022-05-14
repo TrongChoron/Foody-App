@@ -9,22 +9,22 @@ package vn.hcmute.nhom02.foody.Domain;
  */
 public class FoodModel {
     private Integer id;
-    private byte[] photoFood;
     private String foodName;
     private String foodDescription;
     private Float price;
-    private Integer categoryId;
+    private byte[] photoFood;
+    private Integer restaurantID;
 
     public FoodModel() {
     }
 
-    public FoodModel(Integer id, byte[] photoFood, String foodName, String foodDescription, Float price, Integer categoryId) {
+    public FoodModel(Integer id, String foodName, String foodDescription, Float price, byte[] photoFood, Integer restaurantID) {
         this.id = id;
         this.photoFood = photoFood;
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.price = price;
-        this.categoryId = categoryId;
+        this.restaurantID = restaurantID;
     }
 
     public Integer getId() {
@@ -67,11 +67,11 @@ public class FoodModel {
         this.price = price;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Integer getRestaurantID() {
+        return restaurantID;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setRestaurantID(Integer restaurantID) {
+        this.restaurantID = restaurantID;
     }
 }

@@ -1,5 +1,7 @@
 package vn.hcmute.nhom02.foody.database;
 
+import java.util.List;
+
 import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 
 /**
@@ -12,7 +14,11 @@ import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 public interface ICategoryQuery extends GenericQuery<CategoryModel> {
     Long insert(CategoryModel categoryModel);
 
-    CategoryModel findByName(String name);
+    List<CategoryModel> findAllCategory();
+
+    Integer delete(Integer id);
+
+    CategoryModel findByCode(String code);
 
     CategoryModel findById(Integer id);
 }

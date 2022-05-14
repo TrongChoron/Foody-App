@@ -25,23 +25,18 @@
             android:name=".activity.ChangePassActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.UpdateProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".signup.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false"></activity>
-        <activity
-            android:name=".activity.OrderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.IntroActivity"
-            android:exported="false" />
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
