@@ -99,10 +99,17 @@ public class LoginActivity extends AppCompatActivity {
                 if (user.getEmail().equals("admin@gmail.com")) {
                     Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.remove("email");
-                    editor.remove("password");
-                    editor.remove("checked");
-                    editor.commit();
+                    if (cbRemember.isChecked()) {
+                        editor.putString("email", email);
+                        editor.putString("password", password);
+                        editor.putBoolean("checked", true);
+                        editor.commit();
+                    } else {
+                        editor.remove("email");
+                        editor.remove("password");
+                        editor.remove("checked");
+                        editor.commit();
+                    }
                     Intent intent = new Intent(LoginActivity.this, ManageActivity.class);
                     Common.currentUser = user;
                     startActivity(intent);

@@ -18,6 +18,8 @@ public interface ICategoryQuery extends GenericQuery<CategoryModel> {
 
     Integer delete(Integer id);
 
+    CategoryModel findByName(String name);
+
     CategoryModel findByCode(String code);
 
     CategoryModel findById(Integer id);

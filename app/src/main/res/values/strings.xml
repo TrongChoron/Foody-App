@@ -21,12 +21,15 @@
     <string name="enter_name">Enter name</string>
     <string name="enter_confirmPass">Enter Confirm Password</string>
     <string name="enter_email">Enter email</string>
+    <string name="enter_address">Enter address</string>
     <string name="enter_password">Enter password</string>
     <string name="email_invalidate">Email invalidate</string>
     <string name="password_mismatch">Password mismatch</string>
     <string name="sign_up_failed">Sign up failed : %1$s</string>
     <string name="email_existed">Email  Existed: %1$s</string>
+    <string name="insert_failed">Insert Failed : %1$s</string>
     <!--    Success -->
+    <string name="insert_restaurant_success">Insert Success</string>
     <string name="sign_up_successfully">Sign up successfully!</string>
     <string name="update_profile_successfully">Update Success</string>
     <string name="update_profile_failed">Update Failed</string>

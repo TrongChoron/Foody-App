@@ -41,6 +41,13 @@ public class CategoryQuery extends AbstractQuery<CategoryModel> implements ICate
         return delete(sql,id);
     }
 
+    @Override
+    public CategoryModel findByName(String name) {
+        final String sql = "SELECT * FROM category WHERE name = '" + name + "' ";
+        List results = query(sql, new CategoryMapper());
+        return results.size() > 0 ? (CategoryModel) results.get(0) : null;
+    }
+
 
     @Override
     public CategoryModel findByCode(String code) {
