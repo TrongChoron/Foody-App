@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodyApp">
         <activity
+            android:name=".activity.RestaurantDetails"
+            android:exported="false" />
+        <activity
             android:name=".activity.ManageActivity"
             android:exported="false" />
         <activity

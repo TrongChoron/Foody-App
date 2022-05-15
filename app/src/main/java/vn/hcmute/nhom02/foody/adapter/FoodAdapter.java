@@ -1,6 +1,10 @@
 package vn.hcmute.nhom02.foody.adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,7 @@ import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.Domain.Restaurant;
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.activity.RestaurantDetails;
 import vn.hcmute.nhom02.foody.common.Common;
 import vn.hcmute.nhom02.foody.database.CategoryQuery;
 import vn.hcmute.nhom02.foody.database.ICategoryQuery;
@@ -28,10 +33,12 @@ import vn.hcmute.nhom02.foody.database.RestaurantQuery;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     ArrayList<Restaurant> restaurants;
+    private final Context context;
 
 
-    public FoodAdapter(ArrayList<Restaurant> restaurants) {
+    public FoodAdapter(Context context,ArrayList<Restaurant> restaurants) {
         this.restaurants = restaurants;
+        this.context =context;
     }
 
     @NonNull
@@ -42,16 +49,34 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.restaurantName.setText(restaurants.get(position).getName());
         holder.address.setText(restaurants.get(position).getAddress());
         byte[] avatar = restaurants.get(position).getRestaurantImage();
         holder.restaurantPic.setImageBitmap(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickToGoDetail(restaurants.get(position));
+            }
+        });
+    }
+
+    private void onClickToGoDetail(Restaurant restaurant) {
+        Intent intent = new Intent(context, RestaurantDetails.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("restaurant",restaurant);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
     }
 
     @Override
     public int getItemCount() {
-        return restaurants.size();
+        if (restaurants!=null) {
+            return restaurants.size();
+        }
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -2,6 +2,7 @@ package vn.hcmute.nhom02.foody.Domain;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Arrays;
  * Time     : 10:30
  * Filename : Restaurant
  */
-public class Restaurant {
+public class Restaurant implements Serializable {
     private Integer id;
     private String name;
     private String address;
