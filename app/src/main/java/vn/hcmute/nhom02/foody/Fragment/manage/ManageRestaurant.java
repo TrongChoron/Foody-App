@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.InputStream;
@@ -117,8 +118,11 @@ public class ManageRestaurant extends Fragment {
                 Toast.makeText(this.getContext(), getString(R.string.insert_restaurant_success), Toast.LENGTH_SHORT).show();
                 etName.setText("");
                 etAddress.setText("");
-                restaurantImage.setImageDrawable(res);
+                Glide.with(this)
+                        .load(R.drawable.photoresbackground)
+                        .into(restaurantImage);
                 categoryName.setText("");
+                etName.requestFocus();
             } catch (Exception ex) {
                 Toast.makeText(this.getContext(), getString(R.string.insert_failed, ex.getMessage()), Toast.LENGTH_SHORT).show();
             }
