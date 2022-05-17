@@ -54,7 +54,7 @@ public class TestCategory {
 
     @Test
     public void createCategory(){
-        CategoryModel categoryModel = new CategoryModel(null, "Food", "DA");
+        CategoryModel categoryModel = new CategoryModel(null, "Drink", "DU");
         Long insert = categoryQuery.insert(categoryModel);
     }
 

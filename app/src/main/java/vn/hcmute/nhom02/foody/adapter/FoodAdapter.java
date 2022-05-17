@@ -133,7 +133,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private FoodAdapter adapter;
         TextView restaurantName, address;
         ImageView restaurantPic, editBtn, deleteBtn;
         ConstraintLayout mainLayout;

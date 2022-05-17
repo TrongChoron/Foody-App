@@ -12,41 +12,42 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import vn.hcmute.nhom02.foody.Domain.CategoryModel;
+import vn.hcmute.nhom02.foody.Domain.Restaurant;
 import vn.hcmute.nhom02.foody.adapter.DrinkAdapter;
-import vn.hcmute.nhom02.foody.Domain.Drink;
 import vn.hcmute.nhom02.foody.R;
-import vn.hcmute.nhom02.foody.common.Common;
+import vn.hcmute.nhom02.foody.database.CategoryQuery;
+import vn.hcmute.nhom02.foody.database.ICategoryQuery;
+import vn.hcmute.nhom02.foody.database.IRestaurantQuery;
+import vn.hcmute.nhom02.foody.database.RestaurantQuery;
 
 
 public class DinkFragment extends Fragment {
     private RecyclerView.Adapter adapter;
-    private RecyclerView recyclerViewCategoryList;
-    View myFragment ;
+    private RecyclerView recyclerViewRestaurantList;
+    View myFragment;
+    private  ArrayList<Restaurant> restaurants;
+    private final IRestaurantQuery restaurantQuery = RestaurantQuery.getInstance();
+    private final ICategoryQuery categoryQuery = CategoryQuery.getInstance();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        myFragment = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dink, container, false);
-        if(Common.currentUser != null){
-
-        }
+        myFragment = inflater.inflate(R.layout.fragment_food,container,false);
+        CategoryModel categoryModel = categoryQuery.findByCode("DU");
+        restaurants = (ArrayList<Restaurant>) restaurantQuery.findByCategory(categoryModel.getId());
         recyclerViewCategory();
+
+
         return myFragment;
     }
 
     private void recyclerViewCategory(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext()
                 ,LinearLayoutManager.VERTICAL, false);
-        recyclerViewCategoryList = myFragment.findViewById(R.id.recyclerView);
-        recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
-
-        ArrayList<Drink> categories = new ArrayList<>();
-        categories.add(new Drink("Trà sữa","nuoc","35,000.00đ"));
-        categories.add(new Drink("Cofee","caphe","20,000.00đ"));
-        categories.add(new Drink("Trà sữa Boo","trasuaboo","35,000.00đ"));
-
-        adapter = new DrinkAdapter(categories);
-        recyclerViewCategoryList.setAdapter(adapter);
+        recyclerViewRestaurantList = myFragment.findViewById(R.id.recyclerView);
+        recyclerViewRestaurantList.setLayoutManager(linearLayoutManager);
+        adapter = new DrinkAdapter(this.getContext(),restaurants);
+        recyclerViewRestaurantList.setAdapter(adapter);
     }
 }
