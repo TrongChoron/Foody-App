@@ -51,16 +51,12 @@ public class LoginActivity extends AppCompatActivity {
         cbRemember.setChecked(sharedPreferences.getBoolean("checked", false));
 
 
-//        CategoryModel categoryModel = new CategoryModel(null, "Food", "DA");
-//        Long insert = categoryQuery.insert(categoryModel);
-//        Integer delete = categoryQuery.delete(3);
-
         List<User> categoryModels = new ArrayList<>();
         List<User> results = userQuery.getAllUser();
-        if(results !=null)
-        categoryModels.addAll(results);
 
-        System.out.println(String.valueOf(categoryModels));
+        for(User item : results){
+            System.out.println(item.getEmail());
+        }
 
     }
 

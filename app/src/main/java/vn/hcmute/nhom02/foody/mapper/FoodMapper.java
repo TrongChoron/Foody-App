@@ -2,7 +2,6 @@ package vn.hcmute.nhom02.foody.mapper;
 
 import android.database.Cursor;
 
-import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.Domain.FoodModel;
 
 /**
@@ -12,9 +11,9 @@ import vn.hcmute.nhom02.foody.Domain.FoodModel;
  * Time     : 12:14 AM
  * Filename : FoodMapper
  */
-public class FoodMapper implements RowMapper{
+public class FoodMapper implements RowMapper<FoodModel>{
     @Override
-    public Object mapRow(Cursor cs) {
+    public FoodModel mapRow(Cursor cs) {
         FoodModel food = new FoodModel();
         food.setId(cs.getInt(0));
         food.setFoodName(cs.getString(1));

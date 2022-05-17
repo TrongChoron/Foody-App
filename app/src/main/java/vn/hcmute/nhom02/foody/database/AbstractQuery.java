@@ -40,6 +40,8 @@ public class AbstractQuery<T> implements GenericQuery<T>{
                 statement.bindBlob(index, (byte[]) obj);
             } else if (obj instanceof Double) {
                 statement.bindDouble(index, (Double) obj);
+            }else if (obj instanceof Float) {
+                statement.bindDouble(index, (Float) obj);
             }
         }
         return statement;

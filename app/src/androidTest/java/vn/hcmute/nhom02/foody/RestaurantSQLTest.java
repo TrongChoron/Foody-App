@@ -67,9 +67,12 @@ public class RestaurantSQLTest {
 
     @Test
     public void testFindByCategory(){
-        final String code = "DU";
+        final String code = "DA";
         List<Restaurant> foods = restaurantQuery.findByCategory(1);
-        System.out.println(foods);
+        for(Restaurant item :foods) {
+            System.out.println(item.getId());
+        }
+        System.out.println(foods.size());
         Assert.assertTrue(foods.size() > 0);
 
     }

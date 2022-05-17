@@ -10,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
-import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.R;
 
 /**
@@ -23,8 +20,6 @@ import vn.hcmute.nhom02.foody.R;
  * Filename : OrderAdapter
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
-    ArrayList<Food> foods;
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,7 +35,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return foods.size();
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -72,13 +72,12 @@ public class Database extends SQLiteOpenHelper {
 //        Create Order Table
         sqLiteDatabase.execSQL("create table if not exists orders (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "photo_food blob, " +
-                "count INTEGER, " +
-                "food_name varchar(255), " +
-                "food_description varchar(255), " +
-                "price float, " +
-                "product_id INTEGER, " +
-                "user_id INTEGER" +
+                "quantity INTEGER, " +
+                "status boolean,"+
+                "food_id INTEGER NOT NULL, " +
+                "user_id INTEGER NOT NULL," +
+                "FOREIGN KEY (food_id) REFERENCES food(id),"+
+                "FOREIGN KEY (user_id) REFERENCES user(id)"+
                 ")");
 
     }

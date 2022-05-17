@@ -47,17 +47,26 @@
         app:layout_constraintTop_toBottomOf="@id/categoryName" />
 
     <ImageView
-        android:id="@+id/addToCartBtn"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/editBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bgBottomNavigation"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons8_favorite_cart_100" />
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+    <ImageView
+        android:id="@+id/deleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bgBottomNavigation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBtn"
+        app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
 
     <TextView
         android:id="@+id/price"
@@ -68,7 +77,7 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addToCartBtn"
+        app:layout_constraintEnd_toStartOf="@+id/editBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

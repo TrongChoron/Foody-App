@@ -19,5 +19,9 @@ public interface IRestaurantQuery extends GenericQuery<Restaurant>{
 
     Restaurant findById(Integer id);
 
+    Restaurant findByName(String name);
+
     List<Restaurant> findByCategory(Integer categoryId);
+
+    Integer deleteRestaurant(Restaurant restaurant);
 }

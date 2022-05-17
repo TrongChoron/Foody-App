@@ -14,10 +14,10 @@ import vn.hcmute.nhom02.foody.mapper.FoodMapper;
  * Filename : FoodQuery
  */
 public class FoodQuery extends AbstractQuery<FoodModel> implements IFoodQuery {
-    private static FoodQuery instance = null;
+    private static IFoodQuery instance = null;
     private IRestaurantQuery restaurantQuery = new RestaurantQuery();
 
-    public static FoodQuery getInstance() {
+    public static IFoodQuery getInstance() {
         if (instance == null) {
             instance = new FoodQuery();
         }
@@ -33,7 +33,7 @@ public class FoodQuery extends AbstractQuery<FoodModel> implements IFoodQuery {
 
     @Override
     public Integer update(FoodModel foodModel) {
-        final String sql = "UPDATE food SET photo_food = ?, food_name = ?, food_description = ?, price = ?, restaurantID = ? WHERE id = ?";
+        final String sql = "UPDATE food SET pic = ?, name = ?, description = ?, price = ?, restaurantID = ? WHERE id = ?";
         return update(sql, foodModel.getPhotoFood(), foodModel.getFoodName(),
                 foodModel.getFoodDescription(), foodModel.getPrice(),
                 foodModel.getRestaurantID(), foodModel.getId());
@@ -41,12 +41,8 @@ public class FoodQuery extends AbstractQuery<FoodModel> implements IFoodQuery {
 
     @Override
     public List<FoodModel> findFoodByRestaurant(Integer restaurantID) {
-        Restaurant restaurantByID = restaurantQuery.findById(restaurantID);
-        if (restaurantByID != null) {
-            final String sql = "SELECT * FROM food WHERE restaurantID = " + restaurantByID.getId();
+            final String sql = "SELECT * FROM food WHERE restaurantID = " + restaurantID;
             return query(sql, new FoodMapper());
-        }
-        return null;
     }
 
     @Override
@@ -58,6 +54,18 @@ public class FoodQuery extends AbstractQuery<FoodModel> implements IFoodQuery {
     @Override
     public List<FoodModel> findAll() {
         final String sql = "SELECT * FROM food";
+        List<FoodModel> foodModels = query(sql, new FoodMapper());
         return query(sql, new FoodMapper());
+    }
+
+    @Override
+    public Integer deleteFoodByRestaurant(Restaurant restaurant) {
+        return null;
+    }
+
+    @Override
+    public Integer deleteFood(FoodModel foodModel) {
+        final String sql =  "DELETE FROM food WHERE id = ?";
+        return delete(sql,foodModel.getId());
     }
 }

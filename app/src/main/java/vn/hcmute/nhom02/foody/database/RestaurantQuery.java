@@ -34,7 +34,8 @@ public class RestaurantQuery extends AbstractQuery<Restaurant> implements IResta
     @Override
     public Integer updateRestaurant(Restaurant restaurant) {
         final String sql = "UPDATE restaurant SET name = ?, address = ?, pic = ?, categoryID = ? WHERE id = ?";
-        return update(sql, restaurant.getName(), restaurant.getAddress(),restaurant.getRestaurantImage(),restaurant.getCategoryId());
+        return update(sql, restaurant.getName(), restaurant.getAddress(),restaurant.getRestaurantImage()
+                ,restaurant.getCategoryId(),restaurant.getId());
     }
 
     @Override
@@ -44,9 +45,21 @@ public class RestaurantQuery extends AbstractQuery<Restaurant> implements IResta
     }
 
     @Override
+    public Restaurant findByName(String name) {
+        final String sql = "SELECT * FROM restaurant WHERE name = " + name;
+        return findById(sql, new RestaurantMapper());
+    }
+
+    @Override
     public List<Restaurant> findByCategory(Integer categoryId) {
         final String sql = "SELECT * FROM restaurant WHERE categoryID = " + categoryId + " ";
         List<Restaurant> results = query(sql, new RestaurantMapper());
         return results.size() > 0 ? results : null;
+    }
+
+    @Override
+    public Integer deleteRestaurant(Restaurant restaurant) {
+        final String sql = "DELETE FROM restaurant WHERE id = ?";
+        return delete(sql,restaurant.getId());
     }
 }

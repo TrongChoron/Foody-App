@@ -3,7 +3,6 @@ package vn.hcmute.nhom02.foody.Fragment.Category;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import vn.hcmute.nhom02.foody.Domain.CategoryModel;
 import vn.hcmute.nhom02.foody.Domain.Restaurant;
 import vn.hcmute.nhom02.foody.adapter.FoodAdapter;
-import vn.hcmute.nhom02.foody.Domain.Food;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.database.CategoryQuery;
 import vn.hcmute.nhom02.foody.database.ICategoryQuery;

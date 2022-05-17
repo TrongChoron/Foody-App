@@ -3,6 +3,7 @@ package vn.hcmute.nhom02.foody.database;
 import java.util.List;
 
 import vn.hcmute.nhom02.foody.Domain.FoodModel;
+import vn.hcmute.nhom02.foody.Domain.Restaurant;
 
 /**
  * Create by: IntelliJ IDEA
@@ -21,5 +22,9 @@ public interface IFoodQuery extends GenericQuery<FoodModel>{
     FoodModel findById(Integer id);
 
     List<FoodModel> findAll();
+
+    Integer deleteFoodByRestaurant(Restaurant restaurant);
+
+    Integer deleteFood(FoodModel foodModel);
 
 }

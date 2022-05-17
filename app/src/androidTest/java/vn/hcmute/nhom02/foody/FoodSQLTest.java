@@ -54,7 +54,7 @@ public class FoodSQLTest {
 
         FoodModel foodModel = new FoodModel();
         foodModel.setPhotoFood(Utils.convertImageViewToBytes(imageView));
-        foodModel.setFoodName("Bánh Tráng");
+        foodModel.setFoodName("Bánh Tráng Trộn 123123");
         foodModel.setFoodDescription("Bánh tráng trà vinh");
         foodModel.setPrice(2.3F);
         foodModel.setRestaurantID(1);
@@ -64,17 +64,41 @@ public class FoodSQLTest {
     }
 
     @Test
+    public void deleteTest(){
+
+        FoodModel foodModel = foodQuery.findById(3);
+
+        Integer foodDelete = foodQuery.deleteFood(foodModel);
+        System.out.println(foodDelete);
+        Assert.assertNotNull(foodDelete);
+    }
+
+    @Test
     public void testFindAllFood() {
         List<FoodModel> foods = foodQuery.findAll();
-        System.out.println(foods.get(0).getFoodDescription());
+        for (FoodModel item :foods){
+            System.out.println(item.getPrice());
+        }
+        if (foods.size()==0) System.out.println("helooooo");
+
         Assert.assertTrue(foods.size() > 0);
     }
 
     @Test
     public void testFindFoodsByRestaurant() {
         List<FoodModel> foods = foodQuery.findFoodByRestaurant(1);
+        for (FoodModel item:foods){
+            System.out.println(item.getFoodName());
+            System.out.println(item.getPrice());
+        }
         System.out.println(foods.get(0).getFoodName());
         Assert.assertTrue(foods.size() > 0);
+    }
+
+    @Test
+    public void findFoodById(){
+        FoodModel foodModel = foodQuery.findById(3);
+        System.out.println(foodModel.getPrice());
     }
 
     @Test

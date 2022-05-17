@@ -45,7 +45,7 @@ public class ManageRestaurant extends Fragment {
     ImageView restaurantImage;
     Button btnSave;
     AutoCompleteTextView categoryName;
-    AutoCompleteTextView autoCompleteTextView;
+//    AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapter;
     View view;
     private ArrayList<CategoryModel> categoryModels;
@@ -63,10 +63,10 @@ public class ManageRestaurant extends Fragment {
             categoryNames.add(item.getName());
         }
 
-        autoCompleteTextView = view.findViewById(R.id.autoCompleteTxt);
+        categoryName = view.findViewById(R.id.autoCompleteTxt);
         adapter = new ArrayAdapter<String>(this.getContext(),R.layout.list_item,categoryNames);
-        autoCompleteTextView.setAdapter(adapter);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        categoryName.setAdapter(adapter);
+        categoryName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item  = adapterView.getItemAtPosition(i).toString();

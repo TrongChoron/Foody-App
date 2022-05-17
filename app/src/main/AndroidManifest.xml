@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodyApp">
         <activity
+            android:name=".activity.UpdateFood"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminRestaurantDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ManageFoodInRestaurant"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UpdateRestaurant"
+            android:exported="false" />
+        <activity
             android:name=".activity.RestaurantDetails"
             android:exported="false" />
         <activity
@@ -32,14 +44,10 @@
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

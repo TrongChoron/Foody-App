@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="vn.hcmute.nhom02.foody.Fragment.Menu.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="vn.hcmute.nhom02.foody.Fragment.Menu.HomeFragment"
+        android:label="@string/title_Res"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_restaurant"

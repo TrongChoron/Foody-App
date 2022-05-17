@@ -1,5 +1,7 @@
 package vn.hcmute.nhom02.foody.Domain;
 
+import java.io.Serializable;
+
 /**
  * Create by: IntelliJ IDEA
  * User     : trongnt
@@ -7,7 +9,7 @@ package vn.hcmute.nhom02.foody.Domain;
  * Time     : 23:59
  * Filename : FoodModel
  */
-public class FoodModel {
+public class FoodModel implements Serializable {
     private Integer id;
     private String foodName;
     private String foodDescription;
