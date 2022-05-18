@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +29,7 @@ public class RestaurantDetails extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewCategoryList;
     private TextView restaurantNameTV, restaurantAddressTV;
-    private ImageView resPic;
+    private ImageView resPic, homeBtn;
     ArrayList<FoodModel> foodModels;
 
     @Override
@@ -47,6 +49,18 @@ public class RestaurantDetails extends AppCompatActivity {
         foodModels = (ArrayList<FoodModel>) foodQuery.findFoodByRestaurant(restaurant.getId());
         recyclerViewCategory();
 
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToHomeActivity();
+            }
+        });
+
+    }
+
+    private void goToHomeActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void recyclerViewCategory(){
@@ -62,5 +76,6 @@ public class RestaurantDetails extends AppCompatActivity {
         restaurantNameTV = findViewById(R.id.restaurantName);
         restaurantAddressTV = findViewById(R.id.addressTV);
         resPic = findViewById(R.id.imgRes);
+        homeBtn = findViewById(R.id.homeBtn);
     }
 }

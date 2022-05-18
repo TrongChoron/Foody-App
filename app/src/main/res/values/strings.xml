@@ -41,4 +41,8 @@
     <string name="select_res">Select Restaurant</string>
     <string name="restaurant">Restaurant</string>
     <string name="change_password_succesfully">Change Password Success</string>
+    <string name="add_to_cart_successfully">Add to cart Successfully</string>
+    <string name="add_to_cart_failed">add to cart failed</string>
+    <string name="update_to_cart_successfully">update cart successfully</string>
+    <string name="update_to_cart_failed">update to cart failed</string>
 </resources>
