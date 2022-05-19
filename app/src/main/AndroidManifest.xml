@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodyApp">
         <activity
+            android:name=".activity.PaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.UpdateFood"
             android:exported="false" />
         <activity

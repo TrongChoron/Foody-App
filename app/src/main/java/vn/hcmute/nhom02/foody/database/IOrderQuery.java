@@ -28,7 +28,11 @@ public interface IOrderQuery extends GenericQuery<OrderModel>{
 
     Integer deleteOrderByUser(Integer userId);
 
+    Integer deleteOrder(Integer id);
+
     OrderModel findByFoodAndUserId(Integer foodID,Integer userID);
+
+    OrderModel findByFoodAndUserAndStatus(Integer foodID,Integer userID,Integer status);
 
     Integer deleteOrderByFood(Integer foodId);
 }

@@ -58,7 +58,7 @@ public class OrderQuery extends AbstractQuery<OrderModel> implements IOrderQuery
 
     @Override
     public List<OrderModel> findAll() {
-        final String sql = "SELECT * FROM order";
+        final String sql = "SELECT * FROM orders";
         List<OrderModel> orderModels = query(sql, new OrderMapper());
         return query(sql, new OrderMapper());
     }
@@ -70,9 +70,23 @@ public class OrderQuery extends AbstractQuery<OrderModel> implements IOrderQuery
     }
 
     @Override
+    public Integer deleteOrder(Integer id) {
+        final String sql = "DELETE FROM orders WHERE id = ?";
+        return delete(sql, id);
+    }
+
+    @Override
     public OrderModel findByFoodAndUserId(Integer foodID, Integer userID) {
         final String sql = "SELECT * FROM orders WHERE food_id = " + foodID + " and" +
                 " user_id = " + userID;
+        final List<OrderModel> orderModels = query(sql, new OrderMapper());
+        return orderModels.size() > 0 ? orderModels.get(0) : null;
+    }
+
+    @Override
+    public OrderModel findByFoodAndUserAndStatus(Integer foodID, Integer userID, Integer status) {
+        final String sql = "SELECT * FROM orders WHERE food_id = " + foodID + " and" +
+                " user_id = " + userID+ " and status = "+status;
         final List<OrderModel> orderModels = query(sql, new OrderMapper());
         return orderModels.size() > 0 ? orderModels.get(0) : null;
     }

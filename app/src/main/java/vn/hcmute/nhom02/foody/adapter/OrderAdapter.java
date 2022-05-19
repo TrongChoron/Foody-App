@@ -1,5 +1,6 @@
 package vn.hcmute.nhom02.foody.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import vn.hcmute.nhom02.foody.Domain.FoodModel;
 import vn.hcmute.nhom02.foody.Domain.OrderModel;
+import vn.hcmute.nhom02.foody.Fragment.Category.OrderFragment;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.common.Utils;
 import vn.hcmute.nhom02.foody.database.FoodQuery;
@@ -50,6 +52,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         return new ViewHolder(inflate);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         OrderModel orderModel = orderModels.get(position);
@@ -62,11 +65,22 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.price.setText(foodModel.getPrice()+ "$");
         holder.quantity.setText(orderModel.getQuantity().toString());
         holder.totalPrice.setText(orderModel.getQuantity() * foodModel.getPrice() + "$");
+
+        holder.btnAdd.setOnClickListener(view -> {
+            OrderFragment.clickBtnPlusCount(context,orderModel);
+        });
+
+        holder.btnMinus.setOnClickListener(view -> {
+            OrderFragment.clickBtnMinusCount(context,orderModel);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return orderModels.size();
+        if(orderModels!=null) {
+            return orderModels.size();
+        }
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

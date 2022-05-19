@@ -85,8 +85,12 @@ public class OrderSQLTest {
     @Test
     public void testFindByUser(){
         List<OrderModel> orderModels = orderQuery.findOrderByUserId(1);
-        for(OrderModel item : orderModels){
-            System.out.println(item);
-        }
+        System.out.println(orderModels.size());
+    }
+
+    @Test
+    public void testFindAll(){
+        List<OrderModel> orderModels = orderQuery.findAll();
+        System.out.println(orderModels.size());
     }
 }
