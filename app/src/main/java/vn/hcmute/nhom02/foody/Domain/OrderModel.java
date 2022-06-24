@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class OrderModel implements Serializable {
     private Integer id;
     private Integer quantity;
-    private Boolean status;
+    private Integer status;
     private Integer foodID;
     private Integer userId;
 
@@ -20,7 +20,7 @@ public class OrderModel implements Serializable {
 
     }
 
-    public OrderModel(Integer id, Integer quantity, Boolean status, Integer foodID, Integer userId) {
+    public OrderModel(Integer id, Integer quantity, Integer status, Integer foodID, Integer userId) {
         this.id = id;
         this.quantity = quantity;
         this.status = status;
@@ -44,11 +44,11 @@ public class OrderModel implements Serializable {
         this.quantity = quantity;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -66,5 +66,10 @@ public class OrderModel implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public void receive(String info){
+        System.out.println("Receiving information from request....");
+        System.out.println(info);
     }
 }

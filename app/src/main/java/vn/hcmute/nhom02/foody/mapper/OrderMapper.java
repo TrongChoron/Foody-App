@@ -18,7 +18,7 @@ public class OrderMapper implements RowMapper<OrderModel> {
         OrderModel orderModel = new OrderModel();
         orderModel.setId(cs.getInt(0));
         orderModel.setQuantity(cs.getInt(1));
-        orderModel.setStatus(cs.getInt(2)!=0);
+        orderModel.setStatus(cs.getInt(2));
         orderModel.setFoodID(cs.getInt(3));
         orderModel.setUserId(cs.getInt(4));
         return orderModel;

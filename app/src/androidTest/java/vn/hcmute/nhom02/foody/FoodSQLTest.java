@@ -53,6 +53,7 @@ public class FoodSQLTest {
         imageView.setImageResource(R.drawable.bunbo);
 
         FoodModel foodModel = new FoodModel();
+        foodModel.setId(1);
         foodModel.setPhotoFood(Utils.convertImageViewToBytes(imageView));
         foodModel.setFoodName("Bánh Tráng Trộn 123123");
         foodModel.setFoodDescription("Bánh tráng trà vinh");
@@ -77,6 +78,8 @@ public class FoodSQLTest {
     public void testFindAllFood() {
         List<FoodModel> foods = foodQuery.findAll();
         for (FoodModel item :foods){
+            System.out.println(item.getId());
+            System.out.println(item.getFoodName());
             System.out.println(item.getPrice());
         }
         if (foods.size()==0) System.out.println("helooooo");
@@ -97,7 +100,7 @@ public class FoodSQLTest {
 
     @Test
     public void findFoodById(){
-        FoodModel foodModel = foodQuery.findById(3);
+        FoodModel foodModel = foodQuery.findById(1);
         System.out.println(foodModel.getPrice());
     }
 

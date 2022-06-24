@@ -2,6 +2,8 @@ package vn.hcmute.nhom02.foody.Fragment.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -82,10 +84,11 @@ public class ProfileFragment extends Fragment {
         });
 
         btnLogOut.setOnClickListener(view -> {
-            Common.currentUser = null;
-            SharedPreferences userPreferences = this.requireContext().getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
-            userPreferences.edit().clear().apply();
-            startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
+                xacNhanLogout();
+//            Common.currentUser = null;
+//            SharedPreferences userPreferences = this.requireContext().getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
+//            userPreferences.edit().clear().apply();
+//            startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
         });
 
         ibCamera.setOnClickListener(view -> {
@@ -102,6 +105,31 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    private void logout(){
+        Common.currentUser = null;
+        SharedPreferences userPreferences = this.requireContext().getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
+        userPreferences.edit().clear().apply();
+        startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
+    }
+
+    private void xacNhanLogout(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setMessage("Do you want to Logout?")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        logout();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
     private void updateOnlyPhoto(User user) {
         try {
             if (user != null) {

@@ -2,6 +2,7 @@ package vn.hcmute.nhom02.foody.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -31,7 +32,7 @@ import vn.hcmute.nhom02.foody.signup.RegisterActivity;
 import vn.hcmute.nhom02.foody.signup.User;
 
 public class LoginActivity extends AppCompatActivity {
-    public static Database database;
+//    public static Database database;
     private EditText edtEmail, edtPassword;
     private CheckBox cbRemember;
     SharedPreferences sharedPreferences;
@@ -43,21 +44,34 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bidingView();
-
+//        insertNecessary();
 
         sharedPreferences = getSharedPreferences(Constants.DATA_LOGIN, MODE_PRIVATE);
         edtEmail.setText(sharedPreferences.getString("email", ""));
         edtPassword.setText(sharedPreferences.getString("password", ""));
         cbRemember.setChecked(sharedPreferences.getBoolean("checked", false));
 
+    }
 
-        List<User> categoryModels = new ArrayList<>();
-        List<User> results = userQuery.getAllUser();
-
-        for(User item : results){
-            System.out.println(item.getEmail());
+    private void insertNecessary(){
+        List<CategoryModel> categoryModels = categoryQuery.findAllCategory();
+        if(categoryModels ==null){
+            CategoryModel categoryModelDrink = new CategoryModel(null, "Food", "DA");
+            Long insert1 = categoryQuery.insert(categoryModelDrink);
+            CategoryModel categoryModelFood = new CategoryModel(null, "Drink", "DU");
+            Long insert2 = categoryQuery.insert(categoryModelFood);
         }
+        List<User> users = userQuery.getAllUser();
+        if(users==null){
+            try{
+                User user = new User(null,"Admin","admin@gmail.com","admin","","",null);
+                userQuery.insert(user);
+            }catch (Exception ex){
+                System.out.println(ex.getMessage());
+            }
 
+        }
+        categoryModels = categoryQuery.findAllCategory();
     }
 
 

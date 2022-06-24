@@ -8,7 +8,7 @@
     android:background="@drawable/background_food">
 
     <ImageView
-        android:id="@+id/categoryPic"
+        android:id="@+id/foodImage"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginStart="10dp"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/banhcanh" />
     <TextView
-        android:id="@+id/categoryName"
+        android:id="@+id/foodName"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_margin="8dp"
@@ -30,11 +30,11 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/categoryPic"
+        app:layout_constraintStart_toEndOf="@+id/foodImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/addToCartBtn"
+        android:id="@+id/addBtn"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="10dp"
@@ -49,8 +49,8 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/addToCartBtn"
-        app:layout_constraintStart_toStartOf="@+id/addToCartBtn"
+        app:layout_constraintEnd_toEndOf="@+id/addBtn"
+        app:layout_constraintStart_toStartOf="@+id/addBtn"
         app:srcCompat="@drawable/icons8_subtract_40" />
 
     <TextView
@@ -61,18 +61,32 @@
         android:text="35,000.00đ"
         android:textSize="13sp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addToCartBtn"
+        app:layout_constraintBottom_toTopOf="@+id/totalPrice"
+        app:layout_constraintEnd_toStartOf="@+id/addBtn"
         app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_margin="8dp"
+        android:text="35,000.00đ"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addBtn"
+        app:layout_constraintTop_toBottomOf="@+id/price"/>
 
-    <EditText
+    <TextView
         android:id="@+id/quantity"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginRight="10dp"
-        android:inputType="number"
+        android:text="1"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/minusBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addToCartBtn"/>
+        app:layout_constraintTop_toBottomOf="@id/addBtn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

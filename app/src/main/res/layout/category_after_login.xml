@@ -28,11 +28,25 @@
         android:layout_marginLeft="8dp"
         android:text="Bánh Canh"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/categoryDes"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
         app:layout_constraintStart_toEndOf="@+id/categoryPic"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:backgroundTint="@color/mainColor"
+        android:progressTint="@color/mainColor"
+        android:rating="4.5"
+        android:secondaryProgressTint="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/categoryDes"
+        app:layout_constraintStart_toEndOf="@+id/categoryPic"
+        app:layout_constraintTop_toBottomOf="@+id/categoryName" />
 
     <TextView
         android:id="@+id/categoryDes"
@@ -44,12 +58,12 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/categoryPic"
-        app:layout_constraintTop_toBottomOf="@id/categoryName" />
+        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
 
     <ImageView
         android:id="@+id/addToCartBtn"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -62,11 +76,11 @@
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="35,000.00đ"
-        android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textColor="@color/mainColor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addToCartBtn"
         app:layout_constraintTop_toTopOf="parent" />

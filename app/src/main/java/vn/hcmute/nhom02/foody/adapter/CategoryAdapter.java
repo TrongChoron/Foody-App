@@ -21,6 +21,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import vn.hcmute.nhom02.foody.Domain.FoodModel;
+import vn.hcmute.nhom02.foody.Fragment.Category.OrderFragment;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.activity.AdminRestaurantDetails;
 import vn.hcmute.nhom02.foody.activity.ManageActivity;
@@ -99,7 +100,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             holder.addToCartBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Add Success", Toast.LENGTH_SHORT).show();
+                    OrderFragment.insertOrUpdateOrder(context, foodModels.get(position));
                 }
             });
         }

@@ -71,6 +71,8 @@ public class RestaurantSQLTest {
         List<Restaurant> foods = restaurantQuery.findByCategory(1);
         for(Restaurant item :foods) {
             System.out.println(item.getId());
+            System.out.println(item.getName());
+            System.out.println(item.getAddress().length());
         }
         System.out.println(foods.size());
         Assert.assertTrue(foods.size() > 0);

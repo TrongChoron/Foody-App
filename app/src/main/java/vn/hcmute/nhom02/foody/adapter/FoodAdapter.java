@@ -56,28 +56,30 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        final Restaurant restaurant = restaurants.get(position);
         if (!Common.currentUser.getEmail().equals("admin@gmail.com")) {
-            holder.restaurantName.setText(restaurants.get(position).getName());
-            holder.address.setText(restaurants.get(position).getAddress());
-            byte[] avatar = restaurants.get(position).getRestaurantImage();
+            holder.restaurantName.setText(restaurant.getName());
+            holder.address.setText(restaurant.getAddress());
+            byte[] avatar = restaurant.getRestaurantImage();
             holder.restaurantPic.setImageBitmap(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
 
             holder.mainLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onClickToGoDetail(restaurants.get(position));
+                    onClickToGoDetail(restaurant);
                 }
             });
         } else {
-            holder.restaurantName.setText(restaurants.get(position).getName());
-            byte[] avatar = restaurants.get(position).getRestaurantImage();
+            holder.restaurantName.setText(restaurant.getName());
+            holder.address.setText(restaurant.getAddress());
+            byte[] avatar = restaurant.getRestaurantImage();
             holder.restaurantPic.setImageBitmap(BitmapFactory.decodeByteArray(avatar, 0, avatar.length));
             holder.editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, UpdateRestaurant.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("restaurant", restaurants.get(position));
+                    bundle.putSerializable("restaurant", restaurant);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
@@ -85,20 +87,20 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             holder.mainLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onClickToGoAdminDetail(restaurants.get(position));
+                    onClickToGoAdminDetail(restaurant);
                 }
             });
 
             holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    List<FoodModel> foods = foodQuery.findFoodByRestaurant(restaurants.get(position).getId());
+                    List<FoodModel> foods = foodQuery.findFoodByRestaurant(restaurant.getId());
                     if (foods.size() > 0) {
                         for (FoodModel item : foods) {
                             foodQuery.deleteFood(item);
                         }
                     }
-                    restaurantQuery.deleteRestaurant(restaurants.get(position));
+                    restaurantQuery.deleteRestaurant(restaurant);
                     restaurants.remove(position);
                     notifyItemRemoved(position);
                     Toast.makeText(context, "Delete Success", Toast.LENGTH_SHORT).show();

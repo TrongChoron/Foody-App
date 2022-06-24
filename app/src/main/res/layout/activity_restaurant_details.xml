@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/imgRes"
             android:layout_width="410dp"
@@ -20,6 +21,18 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </ImageView>
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="#36FF00"
+            android:layout_toRightOf="@+id/imgRes"
+            android:text="Đang mở cửa"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgRes" />
 
         <TextView
             android:id="@+id/restaurantName"
@@ -31,7 +44,7 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRes" />
+            app:layout_constraintTop_toBottomOf="@+id/status" />
 
         <TextView
             android:id="@+id/addressTV"
@@ -43,19 +56,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
 
+        <ImageView
+            android:id="@+id/homeBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toStartOf="@+id/sortBtnAsc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addressTV"
+            app:srcCompat="@drawable/ic_home_black_24dp" />
+        <Button
+            android:id="@+id/sortBtnAsc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SORT ASC"
+            android:onClick="sortAsc"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toStartOf="@+id/sortBtnDes"
+            app:layout_constraintStart_toEndOf="@+id/homeBtn"
+            app:layout_constraintTop_toBottomOf="@+id/addressTV"
+             />
+        <Button
+            android:id="@+id/sortBtnDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SORT DES"
+            android:onClick="sortDes"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sortBtnAsc"
+            app:layout_constraintTop_toBottomOf="@+id/addressTV"
+            />
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addressTV">
+            app:layout_constraintTop_toBottomOf="@+id/homeBtn">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
