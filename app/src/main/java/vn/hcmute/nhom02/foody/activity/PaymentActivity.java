@@ -17,6 +17,8 @@ import java.util.List;
 
 import vn.hcmute.nhom02.foody.Domain.FoodModel;
 import vn.hcmute.nhom02.foody.Domain.OrderModel;
+import vn.hcmute.nhom02.foody.Domain.OrderRequest;
+import vn.hcmute.nhom02.foody.Domain.ReceiveOrderRequest;
 import vn.hcmute.nhom02.foody.R;
 import vn.hcmute.nhom02.foody.adapter.OrderAdapter;
 import vn.hcmute.nhom02.foody.adapter.PaymentAdapter;
@@ -69,6 +71,10 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void clickPayment() {
+        for(OrderModel item :orders) {
+            OrderRequest orderRequest = new ReceiveOrderRequest(new OrderModel());
+            orderRequest.sendRequest("I want to order " +item);
+        }
         orderQuery.deleteOrderByUser(Common.currentUser.getId());
         orders.clear();
         totalTV.setText("$");

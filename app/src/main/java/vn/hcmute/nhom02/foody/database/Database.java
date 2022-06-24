@@ -36,49 +36,41 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 //        Create Table user
-        sqLiteDatabase.execSQL("create table if not exists user (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255)," +
-                "email varchar(255) unique," +
-                "password varchar(20)," +
-                "phone varchar(10) ," +
-                "address varchar(255)," +
-                "avatar blob)");
+//        sqLiteDatabase.execSQL("create table if not exists user (" +
+//                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name varchar(255)," +
+//                "email varchar(255) unique," +
+//                "password varchar(20)," +
+//                "phone varchar(10) ," +
+//                "address varchar(255)," +
+//                "avatar blob)");
 //        Create Category table
-        sqLiteDatabase.execSQL("create table if not exists category(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255), " +
-                "code varchar(255)"+
-                ")");
+//        sqLiteDatabase.execSQL("create table if not exists category(" +
+//                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name varchar(255), " +
+//                "code varchar(255)"+
+//                ")");
 //        Create Restaurant Table
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS restaurant(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255), " +
-                "address varchar(255)," +
-                "pic blob,"+
-                "categoryID INTEGER NOT NULL," +
-                " FOREIGN KEY (categoryID) REFERENCES category(id))"
-        );
+//        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS restaurant(" +
+//                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name varchar(255), " +
+//                "address varchar(255)," +
+//                "pic blob,"+
+//                "categoryID INTEGER NOT NULL," +
+//                " FOREIGN KEY (categoryID) REFERENCES category(id))"
+//        );
 //        Create Food Table
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS food(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255), " +
-                "description varchar(255)," +
-                "price float,"+
-                "pic blob,"+
-                "restaurantID INTEGER NOT NULL," +
-                " FOREIGN KEY (restaurantID) REFERENCES restaurant(id))"
-        );
+//        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS food(" +
+//                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "name varchar(255), " +
+//                "description varchar(255)," +
+//                "price float,"+
+//                "pic blob,"+
+//                "restaurantID INTEGER NOT NULL," +
+//                " FOREIGN KEY (restaurantID) REFERENCES restaurant(id))"
+//        );
 //        Create Order Table
-        sqLiteDatabase.execSQL("create table if not exists orders (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "quantity INTEGER, " +
-                "status boolean,"+
-                "food_id INTEGER NOT NULL, " +
-                "user_id INTEGER NOT NULL," +
-                "FOREIGN KEY (food_id) REFERENCES food(id),"+
-                "FOREIGN KEY (user_id) REFERENCES user(id)"+
-                ")");
+//
 
     }
 

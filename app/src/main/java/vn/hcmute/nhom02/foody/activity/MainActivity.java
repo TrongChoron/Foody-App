@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_notifications,R.id.navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navView.getLayoutParams();
@@ -43,18 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        database = new Database(this, "foody_test1.sqlite", null, 1);
 //        createTableUser();
-    }
-
-    private void createTableUser() {
-        database.QueryData("create table if not exists user (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name varchar(255)," +
-                "email varchar(255) unique, " +
-                "password varchar(20);");
-    }
-
-    private void dropTable(){
-        database.QueryData("DROP TABLE user;");
     }
 
 }

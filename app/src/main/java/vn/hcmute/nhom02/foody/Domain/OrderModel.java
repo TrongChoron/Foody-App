@@ -67,4 +67,9 @@ public class OrderModel implements Serializable {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    public void receive(String info){
+        System.out.println("Receiving information from request....");
+        System.out.println(info);
+    }
 }

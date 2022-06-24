@@ -4,7 +4,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="390dp"
     android:layout_height="82dp"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     android:background="@drawable/background_food">
 
     <ImageView

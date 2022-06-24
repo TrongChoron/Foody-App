@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 import vn.hcmute.nhom02.foody.Domain.FoodModel;
 import vn.hcmute.nhom02.foody.Domain.Restaurant;
 import vn.hcmute.nhom02.foody.R;
+import vn.hcmute.nhom02.foody.SortByPrice.BubbleSort;
+import vn.hcmute.nhom02.foody.SortByPrice.Sort;
 import vn.hcmute.nhom02.foody.adapter.CategoryAdapter;
 import vn.hcmute.nhom02.foody.adapter.FoodAdapter;
 import vn.hcmute.nhom02.foody.database.FoodQuery;
@@ -30,6 +34,8 @@ public class RestaurantDetails extends AppCompatActivity {
     private RecyclerView recyclerViewCategoryList;
     private TextView restaurantNameTV, restaurantAddressTV;
     private ImageView resPic, homeBtn;
+    private Button sortBtnAsc, sortBtnDes;
+    private Sort sort;
     ArrayList<FoodModel> foodModels;
 
     @Override
@@ -37,7 +43,7 @@ public class RestaurantDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
         Bundle bundle = getIntent().getExtras();
-        if(bundle==null){
+        if (bundle == null) {
             return;
         }
         Restaurant restaurant = (Restaurant) bundle.get("restaurant");
@@ -56,6 +62,24 @@ public class RestaurantDetails extends AppCompatActivity {
             }
         });
 
+//        sortBtnAsc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sort = new BubbleSort();
+//                sort.sortAscending(foodModels);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//
+//        sortBtnDes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sort = new BubbleSort();
+//                sort.sortDescending(foodModels);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+
     }
 
     private void goToHomeActivity() {
@@ -63,19 +87,34 @@ public class RestaurantDetails extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void recyclerViewCategory(){
+    private void recyclerViewCategory() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this
-                ,LinearLayoutManager.VERTICAL, false);
+                , LinearLayoutManager.VERTICAL, false);
         recyclerViewCategoryList = findViewById(R.id.recyclerView);
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
-        adapter = new CategoryAdapter(this,foodModels);
+        adapter = new CategoryAdapter(this, foodModels);
         recyclerViewCategoryList.setAdapter(adapter);
     }
+
     private void biding() {
         recyclerViewCategoryList = findViewById(R.id.recyclerView);
         restaurantNameTV = findViewById(R.id.restaurantName);
         restaurantAddressTV = findViewById(R.id.addressTV);
         resPic = findViewById(R.id.imgRes);
         homeBtn = findViewById(R.id.homeBtn);
+        sortBtnAsc = findViewById(R.id.sortBtnAsc);
+        sortBtnDes = findViewById(R.id.sortBtnDes);
+    }
+
+    public void sortAsc(View view) {
+        sort = new BubbleSort();
+        sort.sortAscending(foodModels);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void sortDes(View view) {
+        sort = new BubbleSort();
+        sort.sortDescending(foodModels);
+        adapter.notifyDataSetChanged();
     }
 }

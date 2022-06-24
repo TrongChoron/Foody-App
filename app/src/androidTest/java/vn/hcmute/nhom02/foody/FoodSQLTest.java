@@ -79,6 +79,7 @@ public class FoodSQLTest {
         List<FoodModel> foods = foodQuery.findAll();
         for (FoodModel item :foods){
             System.out.println(item.getId());
+            System.out.println(item.getFoodName());
             System.out.println(item.getPrice());
         }
         if (foods.size()==0) System.out.println("helooooo");

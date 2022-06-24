@@ -37,7 +37,8 @@ public class ManageFoodInRestaurant extends AppCompatActivity {
     private ImageView foodImage;
     private Button btnSave;
     private TextView restaurantName;
-    private final IFoodQuery foodQuery = FoodQuery.getInstance();
+    Restaurant restaurant;
+//    private final IFoodQuery foodQuery = FoodQuery.getInstance();
     private final IRestaurantQuery restaurantQuery = RestaurantQuery.getInstance();
 
     @Override
@@ -48,7 +49,7 @@ public class ManageFoodInRestaurant extends AppCompatActivity {
         if(bundle==null){
             return;
         }
-        Restaurant restaurant = (Restaurant) bundle.get("restaurant");
+       restaurant = (Restaurant) bundle.get("restaurant");
         biding();
         restaurantName.setText(restaurant.getName());
 
@@ -77,15 +78,16 @@ public class ManageFoodInRestaurant extends AppCompatActivity {
     }
 
     private void createNewFood(){
+        final IFoodQuery foodQuery = FoodQuery.getInstance();
         Integer resID=1;
-        Restaurant findByName = restaurantQuery.findByName(restaurantName.getText().toString());
+//        Restaurant findByName = restaurantQuery.findByName(restaurantName.getText().toString());
         final String name = Objects.requireNonNull(etName.getText()).toString();
         final String description = Objects.requireNonNull(etDes.getText()).toString();
         final Float price = Float.valueOf(Objects.requireNonNull(etPrice.getText()).toString());
         final byte [] foodPic = Utils.convertImageViewToBytes(foodImage);
-        if(findByName != null){
-            resID = findByName.getId();
-        }
+//        if(findByName != null){
+//            resID = findByName.getId();
+//        }
 
         if (name.isEmpty()) {
             etName.setError(getString(R.string.enter_name));
@@ -100,7 +102,7 @@ public class ManageFoodInRestaurant extends AppCompatActivity {
         }
         else {
             try {
-                FoodModel foodModel = new FoodModel(null, name, description,price, foodPic, resID);
+                FoodModel foodModel = new FoodModel(null, name, description,price, foodPic, restaurant.getId());
                 foodQuery.insert(foodModel);
                 Toast.makeText(this, getString(R.string.insert_restaurant_success), Toast.LENGTH_SHORT).show();
 //                etName.setText("");

@@ -1,10 +1,13 @@
 package vn.hcmute.nhom02.foody.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.InputStream;
 import java.util.Objects;
 
 import vn.hcmute.nhom02.foody.Domain.CategoryModel;
@@ -55,6 +59,13 @@ public class UpdateRestaurant extends AppCompatActivity {
                 updateRes(restaurant);
             }
         });
+
+        restaurantImage.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, Constants.REQUEST_CODE_FOLDER);
+        });
+
     }
 
     private void updateRes(Restaurant restaurant) {
@@ -95,5 +106,22 @@ public class UpdateRestaurant extends AppCompatActivity {
         restaurantImage.setImageBitmap((BitmapFactory.decodeByteArray(restaurant.getRestaurantImage(), 0, restaurant.getRestaurantImage().length)));
         CategoryModel categoryModel = categoryQuery.findById(restaurant.getCategoryId());
         categoryName.setText(categoryModel.getName());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == Constants.REQUEST_CODE_FOLDER && resultCode == this.RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            try {
+                InputStream inputStream = this.getContentResolver().openInputStream(uri);
+                Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream),
+                        restaurantImage.getWidth(), restaurantImage.getHeight(), true);
+                restaurantImage.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
